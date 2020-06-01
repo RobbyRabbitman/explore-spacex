@@ -1,9 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+export const HOME_PAGE = '';
+export const LAUNCHES_PAGE = 'launches';
+
 const routes: Routes = [
   {
-    path: 'launches',
+    path: HOME_PAGE,
+    loadChildren: () =>
+      import('../app/pages/home/home.module').then(
+        (module) => module.HomeModule
+      ),
+  },
+  {
+    path: LAUNCHES_PAGE,
     loadChildren: () =>
       import('../app/pages/launches/launches.module').then(
         (module) => module.LaunchesModule
@@ -11,7 +21,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'launches',
+    redirectTo: HOME_PAGE,
     pathMatch: 'full',
   },
 ];
