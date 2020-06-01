@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Launch } from '../model/launch';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { map, filter } from 'rxjs/operators';
+import { isNonNull } from '../utils/isNonNull';
 
 @Injectable()
 export class LaunchesService {
@@ -20,5 +22,21 @@ export class LaunchesService {
 
   get launches$(): Observable<Launch[]> {
     return this._launches$.asObservable();
+  }
+
+  public sortByLaunchDate(
+    launches$: Observable<Launch[]>
+  ): Observable<Launch[]> {
+    return launches$.pipe(
+      filter(isNonNull),
+      map((launches) =>
+        launches.sort((a, b) =>
+          new Date(a.launch_date_utc).getMilliseconds() <
+          new Date(b.launch_date_utc).getMilliseconds()
+            ? -1
+            : 1
+        )
+      )
+    );
   }
 }

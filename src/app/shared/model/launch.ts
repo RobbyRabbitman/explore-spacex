@@ -2,9 +2,9 @@ export interface Launch {
   details: string;
   id: number;
   is_tentative: boolean;
-  launch_date_local: Date;
-  launch_date_unix: Date;
-  launch_date_utc: Date;
+  launch_date_local: string;
+  launch_date_unix: string;
+  launch_date_utc: string;
   launch_site: LaunchSite;
   launch_success: boolean;
   launch_year: string;
@@ -12,8 +12,8 @@ export interface Launch {
   mission_id: string[];
   mission_name: string;
   rocket: LaunchRocket;
-  static_fire_date_unix: Date;
-  static_fire_date_utc: Date;
+  static_fire_date_unix: string;
+  static_fire_date_utc: string;
   telemetry: Telemetry;
   tentative_max_precision: string;
   upcoming: boolean;
@@ -101,7 +101,7 @@ export interface RocketRocket {
   description: string;
   diameter: Diameter;
   engines: Engines;
-  first_flight: Date;
+  first_flight: string;
   first_stage: FluffyFirstStage;
   height: Diameter;
   id: number;
@@ -206,7 +206,7 @@ export interface OrbitParams {
   apoapsis_km: number;
   arg_of_pericenter: number;
   eccentricity: number;
-  epoch: Date;
+  epoch: string;
   inclination_deg: number;
   lifespan_years: number;
   longitude: number;
