@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LaunchesComponent } from './launches.component';
+import { LaunchDetailComponent } from 'src/app/shared/components/launch-detail/launch-detail.component';
 
 const routes: Routes = [
   {
     path: '',
     children: [
       { path: '', component: LaunchesComponent },
-      { path: ':id', component: null },
+      { path: ':id', component: LaunchDetailComponent },
     ],
   },
 ];
