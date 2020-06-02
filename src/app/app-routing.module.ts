@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-export const HOME_PAGE = '';
-export const LAUNCHES_PAGE = 'launches';
+import { HOME_PAGE, LAUNCHES_PAGE } from './shared/routes/constants';
 
 const routes: Routes = [
   {

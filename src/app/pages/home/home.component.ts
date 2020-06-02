@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LAUNCHES_PAGE } from '../../app-routing.module';
+import { LAUNCHES_PAGE } from 'src/app/shared/routes/constants';
 
 @Component({
   selector: 'app-home',
