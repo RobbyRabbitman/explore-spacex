@@ -1,5 +1,5 @@
-<mat-card>
-  <mat-card-header>
+<mat-card class="card">
+  <mat-card-header class="card-header">
     <img
       mat-card-avatar
       loading="lazy"
@@ -9,7 +9,12 @@
       {{ launch.mission_name }}
     </mat-card-title>
     <mat-card-subtitle>{{ launch.launch_date_utc | date }} </mat-card-subtitle>
-    <button mat-icon-button color="primary" [routerLink]="launch.id">
+    <button
+      class="launch-detail-button"
+      mat-icon-button
+      color="primary"
+      [routerLink]="launch.id"
+    >
       <mat-icon>open_in_new</mat-icon>
     </button>
   </mat-card-header>
