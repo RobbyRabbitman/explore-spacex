@@ -4,14 +4,19 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
   UrlTree,
+  Router,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { LaunchesService } from '../launches.service';
-import { map } from 'rxjs/operators';
+import { LaunchesService } from '../services/launches.service';
+import { map, tap } from 'rxjs/operators';
+import { HOME_PAGE } from '../routes/constants';
 
 @Injectable()
 export class LaunchGuard implements CanActivate {
-  constructor(private launchesService: LaunchesService) {}
+  constructor(
+    private launchesService: LaunchesService,
+    private router: Router
+  ) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -21,6 +26,9 @@ export class LaunchGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return this.launchesService.launches$.pipe(map((launches) => !!launches));
+    return this.launchesService.launches$.pipe(
+      map((launches) => !!launches),
+      tap((exists) => (!exists ? this.router.navigateByUrl(HOME_PAGE) : null))
+    );
   }
 }
