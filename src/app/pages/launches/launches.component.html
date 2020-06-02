@@ -1,5 +1,8 @@
-<app-launches-overview
-  *ngFor="let launch of launches$ | async"
-  [launch]="launch"
->
-</app-launches-overview>
+<section id="launches">
+  <app-launches-overview
+    [id]="'launch#'.concat(launch.id)"
+    *ngFor="let launch of launches$ | async"
+    [launch]="launch"
+  >
+  </app-launches-overview>
+</section>

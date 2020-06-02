@@ -1,0 +1,6 @@
+#launches {
+  display: grid;
+  gap: var(--spacing);
+  grid-template-columns: min(480px, 80vw);
+  justify-content: center;
+}
