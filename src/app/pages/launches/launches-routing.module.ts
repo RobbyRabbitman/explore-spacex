@@ -3,12 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { LaunchesComponent } from './launches.component';
 import { LaunchDetailComponent } from 'src/app/shared/components/launch-detail/launch-detail.component';
 
+export const LAUNCH_DETAIL_PARAM = 'id';
+
 const routes: Routes = [
   {
     path: '',
     children: [
       { path: '', component: LaunchesComponent },
-      { path: ':id', component: LaunchDetailComponent },
+      { path: `:${LAUNCH_DETAIL_PARAM}`, component: LaunchDetailComponent },
     ],
   },
 ];
