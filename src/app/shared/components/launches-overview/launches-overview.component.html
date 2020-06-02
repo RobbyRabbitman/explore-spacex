@@ -1,1 +1,19 @@
-{{ launch | json }}
+<mat-card>
+  <mat-card-header>
+    <img
+      mat-card-avatar
+      loading="lazy"
+      [src]="launch.links.mission_patch_small"
+    />
+    <mat-card-title>
+      {{ launch.mission_name }}
+    </mat-card-title>
+    <mat-card-subtitle>{{ launch.launch_date_utc | date }} </mat-card-subtitle>
+    <button mat-icon-button color="primary" [routerLink]="launch.id">
+      <mat-icon>open_in_new</mat-icon>
+    </button>
+  </mat-card-header>
+  <img loading="lazy" mat-card-image [src]="launch.links.flickr_images[0]" />
+  <mat-card-content></mat-card-content>
+  <mat-card-actions></mat-card-actions>
+</mat-card>
