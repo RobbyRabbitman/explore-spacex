@@ -31,10 +31,10 @@ export class LaunchesService {
       filter(isNonNull),
       map((launches) =>
         launches.sort((a, b) =>
-          new Date(a.launch_date_utc).getMilliseconds() <
-          new Date(b.launch_date_utc).getMilliseconds()
-            ? -1
-            : 1
+          new Date(a.launch_date_utc).getTime() <
+          new Date(b.launch_date_utc).getTime()
+            ? 1
+            : -1
         )
       )
     );
