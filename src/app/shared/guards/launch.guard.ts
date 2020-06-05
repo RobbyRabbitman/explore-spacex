@@ -12,7 +12,7 @@ import { map, tap } from 'rxjs/operators';
 import {
   HOME_PAGE,
   LAUNCH_DETAIL_PARAM,
-  LAUNCHES_PAGE,
+  LAUNCHES_BASE,
 } from '../routes/constants';
 
 @Injectable()
@@ -36,7 +36,7 @@ export class LaunchGuard implements CanActivate {
         map((launch) => !!launch),
         tap((exists) => {
           if (!exists) {
-            this.router.navigateByUrl(LAUNCHES_PAGE);
+            this.router.navigateByUrl(LAUNCHES_BASE);
           }
         })
       );

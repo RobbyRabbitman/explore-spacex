@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LAUNCHES_PAGE, SHELL_PAGE } from '../../routes/constants';
+import { LAUNCHES_BASE, SHELL_PAGE } from '../../routes/constants';
 import { ShellComponent } from './shell.component';
 
 const routes: Routes = [
@@ -9,7 +9,7 @@ const routes: Routes = [
     component: ShellComponent,
     children: [
       {
-        path: LAUNCHES_PAGE,
+        path: LAUNCHES_BASE,
         loadChildren: () =>
           import('../../../pages/launches/launches.module').then(
             (module) => module.LaunchesModule

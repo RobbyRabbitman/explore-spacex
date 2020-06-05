@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LAUNCHES_PAGE } from 'src/app/shared/routes/constants';
+import { LAUNCHES_BASE } from 'src/app/shared/routes/constants';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +12,6 @@ export class HomeComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.launchesPage = LAUNCHES_PAGE;
+    this.launchesPage = LAUNCHES_BASE;
   }
 }
