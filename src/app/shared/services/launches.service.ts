@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Launch } from '../model/launch';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, throwError } from 'rxjs';
-import { map, filter, catchError } from 'rxjs/operators';
+import { map, filter, catchError, tap } from 'rxjs/operators';
 import { isNonNull } from '../utils/isNonNull';
 
 @Injectable()
@@ -31,7 +31,7 @@ export class LaunchesService {
 
   public getLaunch(id: number) {
     return this.launches$.pipe(
-      map((launches) => launches.find((launch) => launch.id === id))
+      map((launches) => launches.find((launch) => launch.id == id))
     );
   }
 

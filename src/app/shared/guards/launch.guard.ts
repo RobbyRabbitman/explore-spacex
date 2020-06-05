@@ -9,7 +9,11 @@ import {
 import { Observable } from 'rxjs';
 import { LaunchesService } from '../services/launches.service';
 import { map, tap } from 'rxjs/operators';
-import { HOME_PAGE, LAUNCH_DETAIL_PARAM } from '../routes/constants';
+import {
+  HOME_PAGE,
+  LAUNCH_DETAIL_PARAM,
+  LAUNCHES_PAGE,
+} from '../routes/constants';
 
 @Injectable()
 export class LaunchGuard implements CanActivate {
@@ -29,10 +33,12 @@ export class LaunchGuard implements CanActivate {
     return this.launchesService
       .getLaunch(Number(next.paramMap.get(LAUNCH_DETAIL_PARAM)))
       .pipe(
-        tap((launch) =>
-          console.debug(launch, next.paramMap.get(LAUNCH_DETAIL_PARAM))
-        ),
-        map((launch) => !!launch)
+        map((launch) => !!launch),
+        tap((exists) => {
+          if (!exists) {
+            this.router.navigateByUrl(LAUNCHES_PAGE);
+          }
+        })
       );
   }
 }
