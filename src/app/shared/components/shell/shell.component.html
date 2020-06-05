@@ -1,4 +1,25 @@
-<mat-toolbar>
-  Set Up
-</mat-toolbar>
-<router-outlet></router-outlet>
+<div class="container">
+  <mat-toolbar class="header mat-elevation-z6" color="primary">
+    <button
+      mat-icon-button
+      (click)="sideNavigation.toggle()"
+      *ngIf="medium$ | async"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+  </mat-toolbar>
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav
+      #sideNavigation
+      class="sidenav"
+      [opened]="!(medium$ | async)"
+      [mode]="(medium$ | async) ? 'over' : 'side'"
+    >
+      nav
+    </mat-sidenav>
+    <mat-sidenav-content class="content">
+      <router-outlet></router-outlet>
+      <app-footer class="footer"></app-footer>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
