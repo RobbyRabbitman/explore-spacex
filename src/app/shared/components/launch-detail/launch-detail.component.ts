@@ -22,11 +22,7 @@ export class LaunchDetailComponent implements OnInit {
   ngOnInit(): void {
     this.launch$ = this.route.params.pipe(
       pluck<ParamMap, number>(LAUNCH_DETAIL_PARAM),
-      switchMap((id) =>
-        this.launchesService.launches$.pipe(
-          map((launches) => launches.find((launch) => launch.id === id))
-        )
-      )
+      switchMap((id) => this.launchesService.getLaunch(id))
     );
   }
 }
