@@ -1,11 +1,10 @@
 <div class="container">
   <mat-toolbar class="header mat-elevation-z6" color="primary">
-    <button
-      mat-icon-button
-      (click)="sideNavigation.toggle()"
-      *ngIf="medium$ | async"
-    >
+    <button mat-icon-button (click)="sideNavigation.toggle()">
       <mat-icon>menu</mat-icon>
+    </button>
+    <button mat-flat-button color="primary" (click)="navigateToHome()">
+      {{ app.name }}
     </button>
   </mat-toolbar>
   <mat-sidenav-container class="sidenav-container">
