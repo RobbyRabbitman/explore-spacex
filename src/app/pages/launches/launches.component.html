@@ -5,4 +5,5 @@
     [launch]="launch"
   >
   </app-launches-overview>
+  <mat-spinner class="spinner" *ngIf="!(launches$ | async)"></mat-spinner>
 </section>
