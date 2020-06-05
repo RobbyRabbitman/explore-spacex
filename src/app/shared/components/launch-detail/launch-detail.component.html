@@ -1,6 +1,11 @@
 <section *ngIf="launch$ | async as launch">
   <mat-toolbar color="primary">
+    <button mat-icon-button (click)="location.back()">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
     <span>{{ launch.mission_name }}</span>
   </mat-toolbar>
+
   links, ships, rockets, countdown
 </section>
+<mat-spinner class="spinner" *ngIf="!(launch$ | async)"></mat-spinner>
