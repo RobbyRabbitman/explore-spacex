@@ -14,14 +14,15 @@ import { Location } from '@angular/common';
 })
 export class LaunchDetailComponent implements OnInit {
   launch$: Observable<Launch>;
+  launchesPage: string;
 
   constructor(
     private route: ActivatedRoute,
-    private launchesService: LaunchesService,
-    public location: Location
+    private launchesService: LaunchesService
   ) {}
 
   ngOnInit(): void {
+    this.launchesPage = this.launchesPage;
     this.launch$ = this.route.params.pipe(
       pluck<ParamMap, number>(LAUNCH_DETAIL_PARAM),
       switchMap((id) => this.launchesService.getLaunch(id).pipe(share()))

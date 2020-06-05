@@ -1,6 +1,6 @@
 <section *ngIf="launch$ | async as launch">
   <mat-toolbar color="primary">
-    <button mat-icon-button (click)="location.back()">
+    <button mat-icon-button [routerLink]="launchesPage">
       <mat-icon>chevron_left</mat-icon>
     </button>
     <span>{{ launch.mission_name }}</span>
