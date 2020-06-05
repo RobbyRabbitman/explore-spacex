@@ -4,7 +4,7 @@ import { pluck, switchMap, share } from 'rxjs/operators';
 import { LaunchesService } from '../../services/launches.service';
 import { Observable } from 'rxjs';
 import { Launch } from '../../model/launch';
-import { LAUNCH_DETAIL_PARAM } from '../../routes/constants';
+import { LAUNCH_DETAIL_PARAM, LAUNCHES_BASE } from '../../routes/constants';
 import { Location } from '@angular/common';
 
 @Component({
@@ -22,7 +22,7 @@ export class LaunchDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.launchesPage = this.launchesPage;
+    this.launchesPage = LAUNCHES_BASE;
     this.launch$ = this.route.params.pipe(
       pluck<ParamMap, number>(LAUNCH_DETAIL_PARAM),
       switchMap((id) => this.launchesService.getLaunch(id).pipe(share()))
