@@ -1,25 +1,25 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HOME_PAGE, LAUNCHES_PAGE } from './shared/routes/constants';
+import { SHELL_BASE, HOME_BASE } from './shared/routes/constants';
 
 const routes: Routes = [
   {
-    path: HOME_PAGE,
+    path: HOME_BASE,
     loadChildren: () =>
       import('../app/pages/home/home.module').then(
         (module) => module.HomeModule
       ),
   },
   {
-    path: LAUNCHES_PAGE,
+    path: SHELL_BASE,
     loadChildren: () =>
-      import('../app/pages/launches/launches.module').then(
-        (module) => module.LaunchesModule
+      import('../app/shared/components/shell/shell.module').then(
+        (module) => module.ShellModule
       ),
   },
   {
     path: '**',
-    redirectTo: HOME_PAGE,
+    redirectTo: HOME_BASE,
     pathMatch: 'full',
   },
 ];
