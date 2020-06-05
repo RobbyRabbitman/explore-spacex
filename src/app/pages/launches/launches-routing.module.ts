@@ -13,7 +13,6 @@ const routes: Routes = [
       {
         path: `:${LAUNCH_DETAIL_PARAM}`,
         component: LaunchDetailComponent,
-        canActivate: [LaunchGuard],
       },
     ],
   },
