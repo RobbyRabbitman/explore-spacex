@@ -18,8 +18,7 @@ export class LaunchDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private launchesService: LaunchesService,
-    private router: Router
+    public launchesService: LaunchesService
   ) {}
 
   ngOnInit(): void {
@@ -28,16 +27,5 @@ export class LaunchDetailComponent implements OnInit {
       pluck<ParamMap, number>(LAUNCH_DETAIL_PARAM),
       switchMap((id) => this.launchesService.getLaunch(id).pipe(share()))
     );
-  }
-
-  navigate(id: number, offset: number) {
-    this.launchesService
-      .getLaunch(id, offset)
-      .pipe(take(1))
-      .subscribe((nextlaunch) =>
-        this.router.navigate([`../${nextlaunch.id}`], {
-          relativeTo: this.route,
-        })
-      );
   }
 }
