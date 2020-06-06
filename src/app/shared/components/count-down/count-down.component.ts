@@ -9,15 +9,21 @@ import { Time } from './Types';
   styleUrls: ['./count-down.component.scss'],
 })
 export class CountDownComponent implements OnInit {
-  @Input() from: Date;
+  @Input() from: Date | string;
   @Input() interval: number = 1000;
   countdown$: Observable<Time>;
 
   constructor() {}
 
   ngOnInit(): void {
-    this.countdown$ = interval(this.interval).pipe(
-      map(() => (this.from.getTime() - new Date().getTime()) / 1000),
+    if (typeof this.from === 'string')
+      this.countdown$ = this.initCountdown(new Date(this.from));
+    else this.initCountdown(this.from);
+  }
+
+  private initCountdown(from: Date): Observable<Time> {
+    return interval(this.interval).pipe(
+      map(() => (from.getTime() - new Date().getTime()) / 1000),
       takeWhile((seconds) => seconds >= 0),
       map((seconds) => new Time(seconds))
     );
