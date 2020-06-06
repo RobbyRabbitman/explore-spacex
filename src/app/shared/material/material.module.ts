@@ -6,6 +6,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LayoutModule } from '@angular/cdk/layout';
+import { MatTooltipModule } from '@angular/material/tooltip';
 @NgModule({
   exports: [
     MatCardModule,
@@ -15,6 +16,7 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatSidenavModule,
     LayoutModule,
     MatProgressSpinnerModule,
+    MatTooltipModule,
   ],
 })
 export class MaterialModule {}

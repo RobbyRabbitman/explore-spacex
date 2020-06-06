@@ -1,7 +1,13 @@
 :host {
   height: 100%;
   display: block;
-  .spinner {
+  > .spinner {
     margin: auto;
+  }
+  > .launch-detail {
+    > .header > .name {
+      flex: 1;
+      text-align: center;
+    }
   }
 }

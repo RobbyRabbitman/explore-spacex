@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Launch } from '../model/launch';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject, throwError } from 'rxjs';
+import { Observable, BehaviorSubject, throwError, empty } from 'rxjs';
 import { map, filter, catchError, tap } from 'rxjs/operators';
 import { isNonNull } from '../utils/isNonNull';
 
@@ -29,9 +29,13 @@ export class LaunchesService {
     return this._launches$.asObservable().pipe(filter(isNonNull));
   }
 
-  public getLaunch(id: number) {
-    return this.launches$.pipe(
-      map((launches) => launches.find((launch) => launch.id == id))
+  public getLaunch(id: number, offset: number = 0): Observable<Launch> {
+    return this.sortByLaunchDate(this.launches$).pipe(
+      map(
+        (launches) =>
+          launches[launches.findIndex((launch) => launch.id == id) - offset]
+      ),
+      catchError((err) => empty())
     );
   }
 

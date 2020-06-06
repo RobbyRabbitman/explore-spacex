@@ -1,9 +1,20 @@
-<section *ngIf="launch$ | async as launch">
-  <mat-toolbar color="primary">
-    <button mat-icon-button [routerLink]="'/' + launchesPage">
+<section class="launch-detail" *ngIf="launch$ | async as launch">
+  <mat-toolbar class="header" color="primary">
+    <button
+      matTooltip="Previous Launch"
+      mat-icon-button
+      (click)="navigate(launch.id, -1)"
+    >
       <mat-icon>chevron_left</mat-icon>
     </button>
-    <span>{{ launch.mission_name }}</span>
+    <span class="name">{{ launch.mission_name }}</span>
+    <button
+      matTooltip="Next Launch"
+      mat-icon-button
+      (click)="navigate(launch.id, 1)"
+    >
+      <mat-icon>chevron_right</mat-icon>
+    </button>
   </mat-toolbar>
 
   links, ships, rockets, countdown
