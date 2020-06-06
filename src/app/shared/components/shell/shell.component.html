@@ -3,7 +3,7 @@
     <button mat-icon-button (click)="sideNavigation.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
-    <button mat-flat-button color="primary" (click)="navigateToHome()">
+    <button mat-flat-button color="primary" [routerLink]="['/' + homeBase]">
       {{ app.name }}
     </button>
   </mat-toolbar>
@@ -14,7 +14,11 @@
       [opened]="!(medium$ | async)"
       [mode]="(medium$ | async) ? 'over' : 'side'"
     >
-      nav
+      <mat-nav-list>
+        <mat-list-item>
+          <a color="primary" [routerLink]="['/' + launchesBase]">Launches</a>
+        </mat-list-item>
+      </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content class="content">
       <router-outlet></router-outlet>

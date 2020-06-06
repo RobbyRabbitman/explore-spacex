@@ -3,8 +3,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { map, share } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { AppService } from '../../services/app.service';
-import { Router } from '@angular/router';
-import { HOME_PAGE } from '../../routes/constants';
+import { HOME_BASE, LAUNCHES_BASE } from '../../routes/constants';
 
 @Component({
   selector: 'app-shell',
@@ -13,11 +12,12 @@ import { HOME_PAGE } from '../../routes/constants';
 })
 export class ShellComponent implements OnInit {
   medium$: Observable<Boolean>;
+  homeBase: string = HOME_BASE;
+  launchesBase: string = LAUNCHES_BASE;
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    public app: AppService,
-    private router: Router
+    public app: AppService
   ) {}
 
   ngOnInit(): void {
@@ -25,9 +25,5 @@ export class ShellComponent implements OnInit {
       map((state) => state.matches),
       share()
     );
-  }
-
-  navigateToHome() {
-    this.router.navigateByUrl(HOME_PAGE);
   }
 }
