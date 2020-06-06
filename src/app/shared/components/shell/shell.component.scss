@@ -10,16 +10,15 @@
     position: sticky;
     z-index: 2;
   }
+  > .footer {
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
+  }
   > .sidenav-container {
     flex: 1;
     > .sidenav {
       width: 200px;
-    }
-    > .content > .footer {
-      position: fixed;
-      width: 100%;
-      bottom: 0;
-      z-index: 2;
     }
   }
 }
