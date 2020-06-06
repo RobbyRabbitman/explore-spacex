@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { interval, Observable } from 'rxjs';
 import { map, takeWhile } from 'rxjs/operators';
 import { Time } from './Types';
@@ -8,14 +8,14 @@ import { Time } from './Types';
   templateUrl: './count-down.component.html',
   styleUrls: ['./count-down.component.scss'],
 })
-export class CountDownComponent implements OnInit {
+export class CountDownComponent implements OnChanges {
   @Input() from: Date | string;
   @Input() interval: number = 1000;
   countdown$: Observable<Time>;
 
   constructor() {}
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
     if (typeof this.from === 'string')
       this.countdown$ = this.initCountdown(new Date(this.from));
     else this.initCountdown(this.from);
