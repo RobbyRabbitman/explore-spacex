@@ -12,4 +12,8 @@ export class LaunchesOverviewComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  stringToDate(string: string) {
+    return new Date(string);
+  }
 }

@@ -6,16 +6,17 @@ import { LaunchesComponent } from './launches.component';
 import { LaunchesService } from 'src/app/shared/services/launches.service';
 import { LaunchDetailComponent } from 'src/app/shared/components/launch-detail/launch-detail.component';
 import { MaterialModule } from 'src/app/shared/material/material.module';
-import { LaunchesOverviewComponent } from 'src/app/shared/components/launches-overview/launches-overview.component';
 import { LaunchGuard } from 'src/app/shared/guards/launch.guard';
+import { LaunchesOverviewModule } from 'src/app/shared/components/launches-overview/launches-overview.module';
 
 @NgModule({
-  declarations: [
-    LaunchesComponent,
-    LaunchDetailComponent,
-    LaunchesOverviewComponent,
+  declarations: [LaunchesComponent, LaunchDetailComponent],
+  imports: [
+    CommonModule,
+    LaunchesRoutingModule,
+    MaterialModule,
+    LaunchesOverviewModule,
   ],
-  imports: [CommonModule, LaunchesRoutingModule, MaterialModule],
   providers: [LaunchesService, LaunchGuard],
 })
 export class LaunchesModule {}
