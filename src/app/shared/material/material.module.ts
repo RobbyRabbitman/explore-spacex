@@ -7,6 +7,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
 @NgModule({
   exports: [
     MatCardModule,
@@ -17,6 +19,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     LayoutModule,
     MatProgressSpinnerModule,
     MatTooltipModule,
+    MatListModule,
+    MatMenuModule,
   ],
 })
 export class MaterialModule {}

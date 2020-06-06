@@ -8,14 +8,16 @@ import { LaunchDetailComponent } from 'src/app/shared/components/launch-detail/l
 import { MaterialModule } from 'src/app/shared/material/material.module';
 import { LaunchGuard } from 'src/app/shared/guards/launch.guard';
 import { LaunchesOverviewModule } from 'src/app/shared/components/launches-overview/launches-overview.module';
+import { LaunchDetailModule } from 'src/app/shared/components/launch-detail/launch-detail.module';
 
 @NgModule({
-  declarations: [LaunchesComponent, LaunchDetailComponent],
+  declarations: [LaunchesComponent],
   imports: [
     CommonModule,
     LaunchesRoutingModule,
     MaterialModule,
     LaunchesOverviewModule,
+    LaunchDetailModule,
   ],
   providers: [LaunchesService, LaunchGuard],
 })

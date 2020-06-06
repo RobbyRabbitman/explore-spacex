@@ -11,7 +11,7 @@
         <mat-icon>chevron_left</mat-icon>
       </button>
     </ng-container>
-    <span class="name">{{ launch.mission_name }}</span>
+    <span class="name">{{ launch.mission_name }} </span>
     <ng-container
       *ngIf="launchesService.getLaunch(launch.id, 1) | async as next"
     >
@@ -24,7 +24,126 @@
       </button>
     </ng-container>
   </mat-toolbar>
-
-  links, ships, rockets, countdown
+  <section class="content">
+    <mat-card>
+      <mat-card-content>
+        COUNTDOWN
+        <app-count-down [from]="launch.launch_date_utc"></app-count-down>
+      </mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-header>
+        <img
+          mat-card-avatar
+          loading="lazy"
+          [src]="launch.links.mission_patch_small"
+        />
+        <mat-card-title>
+          {{ launch.mission_name }}
+        </mat-card-title>
+        <mat-card-subtitle> </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item>
+            Date: {{ launch.launch_date_utc | date }}
+          </mat-list-item>
+          <mat-list-item>
+            Site: {{ launch.launch_site.site_name_long }}
+          </mat-list-item>
+          <mat-list-item> Success: {{ launch.launch_success }} </mat-list-item>
+        </mat-list>
+        <p class="details">{{ launch.details }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <a
+          *ngIf="launch.links.wikipedia"
+          mat-button
+          color="primary"
+          [href]="launch.links.wikipedia"
+          target="blank"
+          [matTooltip]="launch.links.wikipedia"
+        >
+          Wikipedia
+        </a>
+        <a
+          *ngIf="launch.links.article_link"
+          mat-button
+          color="primary"
+          [href]="launch.links.article_link"
+          target="blank"
+          [matTooltip]="launch.links.article_link"
+        >
+          Article
+        </a>
+        <a
+          *ngIf="launch.links.presskit"
+          mat-button
+          color="primary"
+          [href]="launch.links.presskit"
+          target="blank"
+          [matTooltip]="launch.links.presskit"
+        >
+          Presskit
+        </a>
+        <button
+          *ngIf="
+            launch.links.reddit_campaign ||
+            launch.links.reddit_launch ||
+            launch.links.reddit_media ||
+            launch.links.reddit_recovery
+          "
+          type="menu"
+          mat-button
+          color="primary"
+          [matMenuTriggerFor]="redditMenu"
+        >
+          Reddit
+        </button>
+        <mat-menu #redditMenu>
+          <a
+            target="blank"
+            mat-menu-item
+            *ngIf="launch.links.reddit_campaign"
+            color="primary"
+            [matTooltip]="launch.links.reddit_campaign"
+            [href]="launch.links.reddit_campaign"
+          >
+            Campaign
+          </a>
+          <a
+            target="blank"
+            *ngIf="launch.links.reddit_launch"
+            mat-menu-item
+            color="primary"
+            [matTooltip]="launch.links.reddit_launch"
+            [href]="launch.links.reddit_launch"
+          >
+            Launch
+          </a>
+          <a
+            target="blank"
+            *ngIf="launch.links.reddit_media"
+            mat-menu-item
+            color="primary"
+            [matTooltip]="launch.links.reddit_media"
+            [href]="launch.links.reddit_media"
+          >
+            Media
+          </a>
+          <a
+            target="blank"
+            *ngIf="launch.links.reddit_recovery"
+            mat-menu-item
+            color="primary"
+            [matTooltip]="launch.links.reddit_recovery"
+            [href]="launch.links.reddit_recovery"
+          >
+            Recovery
+          </a>
+        </mat-menu>
+      </mat-card-actions>
+    </mat-card>
+  </section>
 </section>
 <mat-spinner class="spinner" *ngIf="!(launch$ | async)"></mat-spinner>

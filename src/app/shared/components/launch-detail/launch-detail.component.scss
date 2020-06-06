@@ -1,6 +1,7 @@
 :host {
   height: 100%;
-  display: block;
+  display: flex;
+  flex-direction: column;
   > .spinner {
     margin: auto;
   }
@@ -10,4 +11,9 @@
       text-align: center;
     }
   }
+}
+
+.details,
+mat-card-actions {
+  padding: 0 var(--spacing);
 }
