@@ -2,7 +2,7 @@
   height: 100%;
   display: grid;
   gap: var(--spacing);
-  grid-template-columns: min(480px, 80vw);
+  grid-template-columns: min(400px, 80vw);
   justify-content: center;
   > .spinner {
     margin: auto;
