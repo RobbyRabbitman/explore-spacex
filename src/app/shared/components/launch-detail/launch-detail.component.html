@@ -31,7 +31,13 @@
         <app-count-down [from]="launch.launch_date_utc"></app-count-down>
       </mat-card-content>
     </mat-card>
-    <app-carousel [images]="launch.links.flickr_images"></app-carousel>
+    <app-carousel
+      [config]="{
+        images: launch.links.flickr_images,
+        selected: 0,
+        height: '500px'
+      }"
+    ></app-carousel>
     <mat-card>
       <mat-card-header>
         <img

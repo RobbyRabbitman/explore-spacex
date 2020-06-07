@@ -1,22 +1,27 @@
-<mat-card class="container" [style.height]="height">
+<mat-card *ngIf="config" class="container" [style.height]="config.height">
   <button
-    *ngIf="selected > 0"
+    *ngIf="config.selected > 0"
     class="button"
     mat-icon-button
-    (click)="selected = selected - 1"
+    (click)="config.selected = config.selected - 1"
   >
     <mat-icon>chevron_left</mat-icon>
   </button>
   <div class="images">
-    <ng-container *ngFor="let image of images; let i = index">
-      <img class="image" loading="lazy" [src]="image" *ngIf="selected === i" />
+    <ng-container *ngFor="let image of config.images; let i = index">
+      <img
+        class="image"
+        loading="lazy"
+        [src]="image"
+        *ngIf="config.selected === i"
+      />
     </ng-container>
   </div>
   <button
-    *ngIf="selected < images.length - 1"
+    *ngIf="config.selected < config.images.length - 1"
     class="button"
     mat-icon-button
-    (click)="selected = selected + 1"
+    (click)="config.selected = config.selected + 1"
   >
     <mat-icon>chevron_right</mat-icon>
   </button>
