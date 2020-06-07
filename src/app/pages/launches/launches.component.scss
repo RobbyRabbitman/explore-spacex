@@ -4,6 +4,9 @@
   gap: var(--spacing);
   grid-template-columns: min(400px, 80vw);
   justify-content: center;
+  > h3 {
+    margin: 0;
+  }
   > .spinner {
     margin: auto;
   }
