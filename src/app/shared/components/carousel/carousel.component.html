@@ -1,6 +1,6 @@
 <mat-card *ngIf="config" class="container" [style.height]="config.height">
   <button
-    *ngIf="config.selected > 0"
+    [disabled]="config.selected <= 0"
     class="button"
     mat-icon-button
     (click)="config.selected = config.selected - 1"
@@ -18,7 +18,7 @@
     </ng-container>
   </div>
   <button
-    *ngIf="config.selected < config.images.length - 1"
+    [disabled]="config.selected >= config.images.length - 1"
     class="button"
     mat-icon-button
     (click)="config.selected = config.selected + 1"

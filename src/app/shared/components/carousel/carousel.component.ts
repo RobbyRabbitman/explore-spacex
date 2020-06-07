@@ -6,12 +6,8 @@ import { Config } from './types';
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.scss'],
 })
-export class CarouselComponent implements OnChanges {
+export class CarouselComponent {
   @Input() config: Config;
 
   constructor() {}
-
-  ngOnChanges() {
-    console.log(this.config);
-  }
 }
