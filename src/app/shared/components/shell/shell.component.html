@@ -15,8 +15,8 @@
       [mode]="(medium$ | async) ? 'over' : 'side'"
     >
       <mat-nav-list>
-        <mat-list-item>
-          <a color="primary" [routerLink]="['/' + launchesBase]">Launches</a>
+        <mat-list-item [routerLink]="['/' + launchesBase]">
+          <a color="primary">Launches</a>
         </mat-list-item>
       </mat-nav-list>
     </mat-sidenav>
