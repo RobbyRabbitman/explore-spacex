@@ -26,23 +26,8 @@ export class LaunchesService {
   get launches$(): Observable<Launch[]> {
     if (this._launches$.value == null)
       this.fetch().subscribe((launches) => this._launches$.next(launches));
-    return this._launches$.asObservable().pipe(filter(isNonNull));
-  }
-
-  public getLaunch(id: number, offset: number = 0): Observable<Launch> {
-    return this.sortByLaunchDate(this.launches$).pipe(
-      map(
-        (launches) =>
-          launches[launches.findIndex((launch) => launch.id == id) - offset]
-      ),
-      catchError((err) => empty())
-    );
-  }
-
-  public sortByLaunchDate(
-    launches$: Observable<Launch[]>
-  ): Observable<Launch[]> {
-    return launches$.pipe(
+    return this._launches$.asObservable().pipe(
+      filter(isNonNull),
       map((launches) =>
         launches.sort((a, b) =>
           new Date(a.launch_date_utc).getTime() <
@@ -51,6 +36,16 @@ export class LaunchesService {
             : -1
         )
       )
+    );
+  }
+
+  public getLaunch(id: number, offset: number = 0): Observable<Launch> {
+    return this.launches$.pipe(
+      map(
+        (launches) =>
+          launches[launches.findIndex((launch) => launch.id == id) - offset]
+      ),
+      catchError((err) => empty())
     );
   }
 }
