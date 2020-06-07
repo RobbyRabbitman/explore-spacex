@@ -1,8 +1,10 @@
 <section id="launches">
-  <ng-container *ngFor="let item of launches$ | async">
-    <h3 [id]="item.year">{{ item.year }}</h3>
+  <ng-container
+    *ngFor="let item of launches$ | async | keyvalue: originalOrder"
+  >
+    <h3 [id]="item.key">{{ item.key }}</h3>
     <app-launches-overview
-      *ngFor="let launch of item.launches"
+      *ngFor="let launch of item.value"
       [id]="'launch_'.concat(launch.id)"
       [launch]="launch"
     >

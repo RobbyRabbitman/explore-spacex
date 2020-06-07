@@ -2,12 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LaunchesService } from 'src/app/shared/services/launches.service';
 import { Observable } from 'rxjs';
 import { Launch } from 'src/app/shared/model/launch';
-import { map } from 'rxjs/operators';
-
-interface LaunchesPerAnno {
-  launches: Launch[];
-  year: number;
-}
+import { map, share } from 'rxjs/operators';
 
 @Component({
   selector: 'app-launches',
@@ -15,7 +10,7 @@ interface LaunchesPerAnno {
   styleUrls: ['./launches.component.scss'],
 })
 export class LaunchesComponent implements OnInit {
-  launches$: Observable<LaunchesPerAnno[]>;
+  launches$: Observable<Map<number, Launch[]>>;
 
   constructor(private launchesService: LaunchesService) {}
 
@@ -32,10 +27,11 @@ export class LaunchesComponent implements OnInit {
             Number(a.launch_year) > Number(b.launch_year) ? b : a
           ).launch_year
         );
-        let out: LaunchesPerAnno[] = [];
+        let out: Map<number, Launch[]> = new Map();
         for (let currentYear = latest; currentYear >= oldest; currentYear--) {
-          out.push({
-            launches: launches
+          out.set(
+            currentYear,
+            launches
               .filter(
                 (launches) => Number(launches.launch_year) === currentYear
               )
@@ -44,12 +40,15 @@ export class LaunchesComponent implements OnInit {
                 new Date(b.launch_date_utc).getTime()
                   ? 1
                   : -1
-              ),
-            year: currentYear,
-          });
+              )
+          );
         }
+        console.debug(out);
         return out;
-      })
+      }),
+      share()
     );
   }
+
+  originalOrder() {}
 }
