@@ -2,7 +2,7 @@
   <ng-container
     *ngFor="let item of launches$ | async | keyvalue: originalOrder"
   >
-    <h3 [id]="item.key">{{ item.key }}</h3>
+    <h3 [id]="item.key" class="launch-header">{{ item.key }}</h3>
     <app-launches-overview
       *ngFor="let launch of item.value"
       [id]="'launch_'.concat(launch.id)"

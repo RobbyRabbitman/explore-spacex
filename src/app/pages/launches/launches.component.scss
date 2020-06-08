@@ -4,7 +4,8 @@
   gap: var(--spacing);
   grid-template-columns: min(400px, 80vw);
   justify-content: center;
-  > h3 {
+  > .launch-header {
+    text-align: center;
     margin: 0;
   }
   > .spinner {
