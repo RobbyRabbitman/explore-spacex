@@ -9,6 +9,9 @@
   > .header {
     position: sticky;
     z-index: 2;
+    > #themeSwitcher {
+      margin-left: auto;
+    }
   }
   > .footer {
     position: sticky;

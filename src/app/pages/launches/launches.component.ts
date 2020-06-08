@@ -50,5 +50,7 @@ export class LaunchesComponent implements OnInit {
     );
   }
 
-  originalOrder() {}
+  originalOrder() {
+    return 0;
+  }
 }

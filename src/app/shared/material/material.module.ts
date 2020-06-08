@@ -9,6 +9,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 @NgModule({
   exports: [
     MatCardModule,
@@ -21,6 +22,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatTooltipModule,
     MatListModule,
     MatMenuModule,
+    MatSlideToggleModule,
   ],
 })
 export class MaterialModule {}

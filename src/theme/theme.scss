@@ -21,14 +21,27 @@ $spacex-warn: mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
 $spacex-theme: mat-light-theme($spacex-primary, $spacex-accent, $spacex-warn);
+$spacex-theme-dark: mat-dark-theme(
+  $spacex-primary,
+  $spacex-accent,
+  $spacex-warn
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($spacex-theme);
-@include components-theme($spacex-theme);
+.light-theme {
+  @include angular-material-theme($spacex-theme);
+  @include components-theme($spacex-theme);
+}
+
+.dark-theme {
+  @include angular-material-theme($spacex-theme-dark);
+  @include components-theme($spacex-theme-dark);
+}
 
 // Global
+
 html,
 body {
   height: 100%;
