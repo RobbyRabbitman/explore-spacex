@@ -151,6 +151,14 @@
         </mat-menu>
       </mat-card-actions>
     </mat-card>
+    <mat-card id="youtubeCard">
+      <mat-card-content class="content">
+        <youtube-player
+          class="youtube"
+          [videoId]="getIdOfYoutubeVideo(launch)"
+        ></youtube-player>
+      </mat-card-content>
+    </mat-card>
   </section>
 </section>
 <mat-spinner class="spinner" *ngIf="!(launch$ | async)"></mat-spinner>

@@ -18,6 +18,19 @@
   }
 }
 
+#youtubeCard {
+  > .content {
+    display: flex;
+    flex-direction: column;
+    > .youtube {
+      align-self: center;
+      display: flex;
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+}
+
 .details,
 mat-card-actions {
   padding: 0 var(--spacing);

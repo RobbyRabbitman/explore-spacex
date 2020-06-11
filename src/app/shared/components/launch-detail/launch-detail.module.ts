@@ -5,6 +5,7 @@ import { MaterialModule } from '../../material/material.module';
 import { RouterModule } from '@angular/router';
 import { CountDownModule } from '../count-down/count-down.module';
 import { CarouselModule } from '../carousel/carousel.module';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 @NgModule({
   exports: [LaunchDetailComponent],
@@ -15,6 +16,7 @@ import { CarouselModule } from '../carousel/carousel.module';
     RouterModule,
     CountDownModule,
     CarouselModule,
+    YouTubePlayerModule,
   ],
 })
 export class LaunchDetailModule {}

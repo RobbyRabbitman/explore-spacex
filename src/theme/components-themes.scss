@@ -1,2 +1,5 @@
+@import "../app/pages/launches/launches.component.theme-scss.scss";
+
 @mixin components-theme($theme) {
+  @include app-launches-theme($theme);
 }

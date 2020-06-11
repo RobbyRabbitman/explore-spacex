@@ -28,4 +28,8 @@ export class LaunchDetailComponent implements OnInit {
       switchMap((id) => this.launchesService.getLaunch(id).pipe(share()))
     );
   }
+  //"https://youtu.be/y4xBFHjkUvw"
+  getIdOfYoutubeVideo(launch: Launch) {
+    return launch.links.video_link?.replace('https://youtu.be/', '');
+  }
 }
