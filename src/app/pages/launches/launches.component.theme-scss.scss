@@ -1,0 +1,11 @@
+@import "~@angular/material/theming";
+
+@mixin app-launches-theme($theme) {
+  $primary: map-get($theme, primary);
+
+  app-launches {
+    > #toc > ul > li {
+      border-left: solid mat-color($primary) 0.25rem;
+    }
+  }
+}

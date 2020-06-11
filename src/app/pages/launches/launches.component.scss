@@ -1,14 +1,37 @@
-#launches {
-  height: 100%;
-  display: grid;
-  gap: var(--spacing);
-  grid-template-columns: min(400px, 80vw);
-  justify-content: center;
-  > .launch-header {
-    text-align: center;
-    margin: 0;
+:host {
+  display: flex;
+  flex-direction: row;
+  #launches {
+    flex: 1;
+    height: 100%;
+    display: grid;
+    gap: var(--spacing);
+    grid-template-columns: min(25rem, 80vw);
+    justify-content: center;
+    > .launch-header {
+      text-align: center;
+      margin: 0;
+    }
+  }
+  #toc {
+    position: sticky;
+    top: 0;
+    height: 100%;
+    > ul {
+      > li {
+        font-size: 1rem;
+        list-style: none;
+        margin: 0;
+        padding: 0.25rem 0.5rem;
+      }
+    }
   }
   > .spinner {
     margin: auto;
   }
+}
+
+.active-anchor {
+  background: red;
+  color: purple;
 }

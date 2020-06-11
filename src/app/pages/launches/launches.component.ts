@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { LaunchesService } from 'src/app/shared/services/launches.service';
 import { Observable } from 'rxjs';
 import { Launch } from 'src/app/shared/model/launch';
-import { map, share } from 'rxjs/operators';
+import { map, share, take, tap } from 'rxjs/operators';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ViewportScroller, DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-launches',
@@ -16,6 +18,7 @@ export class LaunchesComponent implements OnInit {
 
   ngOnInit(): void {
     this.launches$ = this.launchesService.launches$.pipe(
+      take(1),
       map((launches) => {
         let latest = Number(
           launches.reduce((a, b) =>
@@ -43,7 +46,6 @@ export class LaunchesComponent implements OnInit {
               )
           );
         }
-        console.debug(out);
         return out;
       }),
       share()

@@ -1,14 +1,25 @@
-<section id="launches">
-  <ng-container
-    *ngFor="let item of launches$ | async | keyvalue: originalOrder"
-  >
-    <h3 [id]="item.key" class="launch-header">{{ item.key }}</h3>
-    <app-launches-overview
-      *ngFor="let launch of item.value"
-      [id]="'launch_'.concat(launch.id)"
-      [launch]="launch"
-    >
-    </app-launches-overview>
-  </ng-container>
-  <mat-spinner class="spinner" *ngIf="!(launches$ | async)"></mat-spinner>
-</section>
+<ng-container *ngIf="launches$ | async as launches">
+  <section id="launches">
+    <ng-container *ngFor="let item of launches | keyvalue: originalOrder">
+      <h3 [id]="item.key" class="launch-header">
+        {{ item.key }}
+      </h3>
+      <app-launches-overview
+        *ngFor="let launch of item.value"
+        [id]="'launch_'.concat(launch.id)"
+        [launch]="launch"
+      >
+      </app-launches-overview>
+    </ng-container>
+  </section>
+  <nav id="toc">
+    <ul>
+      <li *ngFor="let item of launches | keyvalue: originalOrder">
+        <a routerLink="./" [fragment]="item.key.toString()">
+          {{ item.key }}
+        </a>
+      </li>
+    </ul>
+  </nav>
+</ng-container>
+<mat-spinner class="spinner" *ngIf="!(launches$ | async)"></mat-spinner>
