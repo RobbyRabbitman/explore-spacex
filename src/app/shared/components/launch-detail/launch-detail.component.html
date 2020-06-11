@@ -25,7 +25,7 @@
     </ng-container>
   </mat-toolbar>
   <section class="content">
-    <mat-card>
+    <mat-card *ngIf="showCountdown(launch)">
       <mat-card-content>
         COUNTDOWN
         <app-count-down [from]="launch.launch_date_utc"></app-count-down>

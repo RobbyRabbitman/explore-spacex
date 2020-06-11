@@ -1,6 +1,14 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  OnChanges,
+  EventEmitter,
+  Output,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { interval, Observable } from 'rxjs';
-import { map, takeWhile } from 'rxjs/operators';
+import { map, takeWhile, finalize } from 'rxjs/operators';
 import { Time } from './Types';
 
 @Component({
@@ -18,7 +26,7 @@ export class CountDownComponent implements OnChanges {
   ngOnChanges(): void {
     if (typeof this.from === 'string')
       this.countdown$ = this.initCountdown(new Date(this.from));
-    else this.initCountdown(this.from);
+    else this.countdown$ = this.initCountdown(this.from);
   }
 
   private initCountdown(from: Date): Observable<Time> {

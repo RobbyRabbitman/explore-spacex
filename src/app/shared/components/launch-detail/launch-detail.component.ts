@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { pluck, switchMap, share, take } from 'rxjs/operators';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { pluck, switchMap, share } from 'rxjs/operators';
 import { LaunchesService } from '../../services/launches.service';
 import { Observable } from 'rxjs';
 import { Launch } from '../../model/launch';
 import { LAUNCH_DETAIL_PARAM, LAUNCHES_BASE } from '../../routes/constants';
-import { Location } from '@angular/common';
+import { showCountDown } from '../../utils/launches';
 
 @Component({
   selector: 'app-launch-detail',
@@ -32,4 +32,6 @@ export class LaunchDetailComponent implements OnInit {
   getIdOfYoutubeVideo(launch: Launch) {
     return launch.links.video_link?.replace('https://youtu.be/', '');
   }
+
+  showCountdown = showCountDown;
 }
