@@ -1,1 +1,4 @@
-<mat-slide-toggle (change)="toggle($event)"></mat-slide-toggle>
+<mat-slide-toggle
+  (change)="toggle($event)"
+  [checked]="service.theme == 'dark-theme'"
+></mat-slide-toggle>

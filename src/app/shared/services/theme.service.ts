@@ -1,0 +1,37 @@
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { tap } from 'rxjs/operators';
+
+export enum Theme {
+  LIGHT = 'light-theme',
+  DARK = 'dark-theme',
+}
+
+@Injectable()
+export class ThemeService {
+  private readonly theme$: BehaviorSubject<Theme>;
+  private readonly KEY: string = 'theme';
+
+  constructor() {
+    this.theme$ = new BehaviorSubject<Theme>(
+      (localStorage.getItem(this.KEY) as Theme) || Theme.LIGHT
+    );
+    this.theme$.pipe(tap(console.debug)).subscribe(this.apply);
+  }
+
+  get theme(): Theme {
+    return this.theme$.value;
+  }
+
+  set theme(theme: Theme) {
+    this.theme$.next(theme);
+  }
+
+  private apply(theme: Theme) {
+    Object.keys(Theme).forEach((theme) =>
+      document.body.classList.remove(Theme[theme])
+    );
+    document.body.classList.add(theme);
+    localStorage.setItem(this.KEY, theme);
+  }
+}

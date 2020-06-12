@@ -1,6 +1,7 @@
 import { Component, Inject, Renderer2 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { ThemeService, Theme } from '../../services/theme.service';
 
 @Component({
   selector: 'app-theme-switcher',
@@ -8,16 +9,9 @@ import { MatSlideToggleChange } from '@angular/material/slide-toggle';
   styleUrls: ['./theme-switcher.component.scss'],
 })
 export class ThemeSwitcherComponent {
-  constructor(
-    @Inject(DOCUMENT) private DOCUMENT: Document,
-    private renderer: Renderer2
-  ) {}
+  constructor(public service: ThemeService) {}
 
   toggle({ checked }: MatSlideToggleChange) {
-    this.renderer.setAttribute(
-      this.DOCUMENT.body,
-      'class',
-      checked ? 'dark-theme' : 'light-theme'
-    );
+    this.service.theme = checked ? Theme.DARK : Theme.LIGHT;
   }
 }

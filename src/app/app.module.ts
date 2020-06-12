@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppService } from './shared/services/app.service';
+import { ThemeService } from './shared/services/theme.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,7 +16,7 @@ import { AppService } from './shared/services/app.service';
     HttpClientModule,
     BrowserAnimationsModule,
   ],
-  providers: [AppService],
+  providers: [AppService, ThemeService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
