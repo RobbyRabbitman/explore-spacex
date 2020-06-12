@@ -22,8 +22,8 @@ $spacex-warn: mat-palette($mat-red);
 // Create the theme object (a Sass map containing all of the palettes).
 $spacex-theme: mat-light-theme($spacex-primary, $spacex-accent, $spacex-warn);
 $spacex-theme-dark: mat-dark-theme(
-  $spacex-primary,
   $spacex-accent,
+  $spacex-primary,
   $spacex-warn
 );
 
