@@ -12,11 +12,14 @@
     <mat-sidenav
       #sideNavigation
       class="sidenav"
-      [opened]="!(medium$ | async)"
-      [mode]="(medium$ | async) ? 'over' : 'side'"
+      [opened]="!medium"
+      [mode]="medium ? 'over' : 'side'"
     >
       <mat-nav-list>
-        <mat-list-item [routerLink]="['/' + launchesBase]">
+        <mat-list-item
+          [routerLink]="['/' + launchesBase]"
+          (click)="medium && sideNavigation.close()"
+        >
           <a color="primary">Launches</a>
         </mat-list-item>
       </mat-nav-list>

@@ -11,7 +11,7 @@ import { HOME_BASE, LAUNCHES_BASE } from '../../routes/constants';
   styleUrls: ['./shell.component.scss'],
 })
 export class ShellComponent implements OnInit {
-  medium$: Observable<Boolean>;
+  medium: Boolean;
   homeBase: string = HOME_BASE;
   launchesBase: string = LAUNCHES_BASE;
 
@@ -21,9 +21,9 @@ export class ShellComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.medium$ = this.breakpointObserver.observe('(max-width: 1079px)').pipe(
-      map((state) => state.matches),
-      share()
-    );
+    this.breakpointObserver
+      .observe('(max-width: 1079px)')
+      .pipe(map((state) => state.matches))
+      .subscribe((matches) => (this.medium = matches));
   }
 }
