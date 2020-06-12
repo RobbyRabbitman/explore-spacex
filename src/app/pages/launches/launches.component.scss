@@ -1,29 +1,32 @@
 :host {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr max-content;
   height: 100%;
+  padding: 1rem;
   #launches {
-    flex: 1;
-    height: 100%;
     display: grid;
-    gap: var(--spacing);
-    grid-template-columns: min(25rem, 80vw);
+    gap: 1rem;
     justify-content: center;
+    > app-launches-overview {
+      max-width: 25rem;
+    }
     > .launch-header {
       text-align: center;
       margin: 0;
     }
   }
   #toc {
-    position: sticky;
-    top: 0;
-    height: 100%;
     > ul {
+      position: sticky;
+      top: 2rem;
       > li {
         font-size: 1rem;
         list-style: none;
         margin: 0;
         padding: 0.25rem 0.5rem;
+        > a {
+          text-decoration: none;
+        }
       }
     }
   }
