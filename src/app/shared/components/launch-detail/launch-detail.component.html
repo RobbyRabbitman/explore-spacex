@@ -43,7 +43,11 @@
         <img
           mat-card-avatar
           loading="lazy"
-          [src]="launch.links.mission_patch_small"
+          [src]="
+            launch.links.mission_patch_small
+              ? launch.links.mission_patch_small
+              : 'assets/images/rocket.svg'
+          "
         />
         <mat-card-title>
           {{ launch.mission_name }}

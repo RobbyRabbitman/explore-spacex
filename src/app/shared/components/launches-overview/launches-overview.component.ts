@@ -12,5 +12,6 @@ export class LaunchesOverviewComponent implements OnInit {
 
   constructor() {}
   ngOnInit(): void {}
+
   showCountdown = showCountDown;
 }
