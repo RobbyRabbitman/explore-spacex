@@ -15,6 +15,13 @@
         text-align: center;
       }
     }
+    > .content {
+      padding: 2rem 0;
+      display: grid;
+      gap: 2rem;
+      justify-content: center;
+      grid-template-columns: min(80vw, 40rem);
+    }
   }
 }
 
