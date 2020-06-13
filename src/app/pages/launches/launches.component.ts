@@ -23,13 +23,14 @@ import { ViewportScroller } from '@angular/common';
 })
 export class LaunchesComponent implements OnInit {
   launches$: Observable<Map<number, Launch[]>>;
-  years: number[];
+  private years: number[];
 
   @ViewChildren('launch', { read: ElementRef }) set launches(
     components: QueryList<ElementRef>
   ) {
     if (components.length === 0) return;
     // toc elementRefs
+
     const toc = this.years.map((year) =>
       document.querySelector(`#toc_year_${year}`)
     );
@@ -68,19 +69,16 @@ export class LaunchesComponent implements OnInit {
         );
         let out: Map<number, Launch[]> = new Map();
         for (let currentYear = latest; currentYear >= oldest; currentYear--) {
-          out.set(
-            currentYear,
-            launches
-              .filter(
-                (launches) => Number(launches.launch_year) === currentYear
-              )
-              .sort((a, b) =>
-                new Date(a.launch_date_utc).getTime() <
-                new Date(b.launch_date_utc).getTime()
-                  ? 1
-                  : -1
-              )
-          );
+          let current = launches
+            .filter((launches) => Number(launches.launch_year) === currentYear)
+            .sort((a, b) =>
+              new Date(a.launch_date_utc).getTime() <
+              new Date(b.launch_date_utc).getTime()
+                ? 1
+                : -1
+            );
+
+          if (current.length > 0) out.set(currentYear, current);
         }
         return out;
       }),
@@ -95,6 +93,7 @@ export class LaunchesComponent implements OnInit {
 
   scrollTo(year: string) {
     // querySelectorAll not necessary (first id is header)
+
     document.querySelector(`#year_${year}`).scrollIntoView();
   }
 }
