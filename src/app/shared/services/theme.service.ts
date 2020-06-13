@@ -28,9 +28,8 @@ export class ThemeService {
   }
 
   private apply(theme: Theme) {
-    Object.keys(Theme).forEach((theme) =>
-      document.body.classList.remove(Theme[theme])
-    );
+    // TODO document.body.classList.remove(this.theme);
+    document.body.classList.remove(...Object.values<Theme>(Theme));
     document.body.classList.add(theme);
     localStorage.setItem(this.KEY, theme);
   }
