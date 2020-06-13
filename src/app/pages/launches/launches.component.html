@@ -5,8 +5,9 @@
         {{ item.key }}
       </h3>
       <app-launches-overview
+        #launch
         *ngFor="let launch of item.value"
-        [id]="'launch_'.concat(launch.id)"
+        [id]="'year_' + launch.launch_year"
         [launch]="launch"
       >
       </app-launches-overview>
@@ -15,7 +16,11 @@
   <nav id="toc">
     <ul>
       <li *ngFor="let item of launches | keyvalue: originalOrder">
-        <a routerLink="./" [fragment]="item.key.toString()">
+        <a
+          [id]="'toc_year_' + item.key"
+          routerLink="./"
+          [fragment]="item.key.toString()"
+        >
           {{ item.key }}
         </a>
       </li>

@@ -6,6 +6,9 @@
   app-launches {
     > #toc > ul > li {
       border-left: solid mat-color($primary) 0.25rem;
+      > .toc-active {
+        color: mat-color($primary) !important;
+      }
     }
   }
 }

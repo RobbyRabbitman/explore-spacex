@@ -2,7 +2,6 @@
   display: grid;
   grid-template-columns: 1fr max-content;
   height: 100%;
-  padding: 1rem;
   #launches {
     display: grid;
     gap: 1rem;
@@ -34,9 +33,4 @@
   > .spinner {
     margin: auto;
   }
-}
-
-.active-anchor {
-  background: red;
-  color: purple;
 }
