@@ -25,12 +25,23 @@ export class LaunchesComponent implements OnInit {
   launches$: Observable<Map<number, Launch[]>>;
   private years: number[];
 
-  @ViewChildren('launch', { read: ElementRef }) set launches(
-    components: QueryList<ElementRef>
+  @ViewChildren('launch') set observeLaunches(
+    components: QueryList<LaunchesOverviewComponent>
   ) {
     if (components.length === 0) return;
+    // scroll to latest
+    const now = Date.now();
+    components
+      .toArray()
+      .reduce((a, b) =>
+        new Date(b.launch.launch_date_utc).getTime() >= now &&
+        new Date(b.launch.launch_date_utc).getTime() <
+          new Date(a.launch.launch_date_utc).getTime()
+          ? b
+          : a
+      )
+      .elementRef.nativeElement.scrollIntoView();
     // toc elementRefs
-
     const toc = this.years.map((year) =>
       document.querySelector(`#toc_year_${year}`)
     );
@@ -47,7 +58,9 @@ export class LaunchesComponent implements OnInit {
       }
     });
     // observe elements
-    components.forEach((element) => observer.observe(element.nativeElement));
+    components.forEach((component) =>
+      observer.observe(component.elementRef.nativeElement)
+    );
   }
 
   constructor(private launchesService: LaunchesService) {}
