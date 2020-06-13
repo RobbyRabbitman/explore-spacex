@@ -1,7 +1,7 @@
 <ng-container *ngIf="launches$ | async as launches">
   <section id="launches">
     <ng-container *ngFor="let item of launches | keyvalue: originalOrder">
-      <h3 [id]="item.key" class="launch-header">
+      <h3 [id]="'year_' + item.key" class="launch-header">
         {{ item.key }}
       </h3>
       <app-launches-overview
@@ -16,11 +16,7 @@
   <nav id="toc">
     <ul>
       <li *ngFor="let item of launches | keyvalue: originalOrder">
-        <a
-          [id]="'toc_year_' + item.key"
-          routerLink="./"
-          [fragment]="item.key.toString()"
-        >
+        <a [id]="'toc_year_' + item.key" (click)="scrollTo(item.key)">
           {{ item.key }}
         </a>
       </li>

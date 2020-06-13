@@ -14,6 +14,7 @@ import { isNonNull } from 'src/app/shared/utils/isNonNull';
 import { LaunchesOverviewComponent } from 'src/app/shared/components/launches-overview/launches-overview.component';
 import { element } from 'protractor';
 import { threadId } from 'worker_threads';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-launches',
@@ -28,7 +29,6 @@ export class LaunchesComponent implements OnInit {
     components: QueryList<ElementRef>
   ) {
     if (components.length === 0) return;
-
     // toc elementRefs
     const toc = this.years.map((year) =>
       document.querySelector(`#toc_year_${year}`)
@@ -91,5 +91,10 @@ export class LaunchesComponent implements OnInit {
 
   originalOrder() {
     return 0;
+  }
+
+  scrollTo(year: string) {
+    // querySelectorAll not necessary (first id is header)
+    document.querySelector(`#year_${year}`).scrollIntoView();
   }
 }
