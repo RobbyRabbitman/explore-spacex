@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  > .spinner {
+    margin: auto 0;
+    align-self: center;
+  }
+  > .rockets {
+    display: grid;
+    gap: 1rem;
+    padding: 1rem 0;
+    grid-template-columns: min(25rem, 80vw);
+    justify-content: center;
+  }
+}

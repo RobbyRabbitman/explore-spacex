@@ -1,1 +1,11 @@
-<p>rockets works!</p>
+<section class="rockets">
+  <app-rocket-overview
+    [rocket]="rocket"
+    *ngFor="let rocket of rockets$ | async"
+  ></app-rocket-overview>
+</section>
+<mat-spinner
+  class="spinner"
+  color="primary"
+  *ngIf="!(rockets$ | async)"
+></mat-spinner>

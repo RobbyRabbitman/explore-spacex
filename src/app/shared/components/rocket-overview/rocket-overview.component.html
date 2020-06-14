@@ -1,0 +1,35 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ rocket.name }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>{{ rocket.description }}</p>
+    <mat-list>
+      <mat-list-item>
+        First Flight: {{ rocket.first_flight | date }}</mat-list-item
+      >
+      <mat-list-item> Height: {{ rocket.height.meters }}m </mat-list-item>
+      <mat-list-item> Diameter: {{ rocket.diameter.meters }}m </mat-list-item>
+      <mat-list-item> Mass: {{ rocket.mass.kg }}kg </mat-list-item>
+      <mat-list-item>
+        Engines: {{ rocket.engines.number }} x {{ rocket.engines.type }}
+      </mat-list-item>
+      <mat-list-item>
+        Succesrate: {{ rocket.success_rate_pct }}%
+      </mat-list-item>
+      <mat-list-item>
+        Cost Per Launch: {{ rocket.cost_per_launch | currency }}
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+  <mat-card-actions>
+    <a
+      mat-button
+      [matTooltip]="rocket.wikipedia"
+      color="primary"
+      [href]="rocket.wikipedia"
+      target="blanc"
+      >Wikipedia</a
+    >
+  </mat-card-actions>
+</mat-card>
