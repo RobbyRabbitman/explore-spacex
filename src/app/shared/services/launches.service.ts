@@ -16,9 +16,7 @@ export class LaunchesService {
   constructor(
     private http: HttpClient,
     @Inject(SPACEX_BASE_URL) private BASE_URL: string
-  ) {
-    console.log(this.BASE_URL);
-  }
+  ) {}
 
   private fetch(): Observable<Launch[]> {
     return this.http.get<Launch[]>(this.BASE_URL.concat(this.RESSOURCE)).pipe(

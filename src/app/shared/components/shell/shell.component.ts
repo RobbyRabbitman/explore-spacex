@@ -3,7 +3,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { map, share } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { AppService } from '../../services/app.service';
-import { HOME_BASE, LAUNCHES_BASE } from '../../routes/constants';
+import { HOME_BASE, LAUNCHES_BASE, ROCKETS_BASE } from '../../routes/constants';
 
 @Component({
   selector: 'app-shell',
@@ -14,6 +14,7 @@ export class ShellComponent implements OnInit {
   medium: Boolean;
   homeBase: string = HOME_BASE;
   launchesBase: string = LAUNCHES_BASE;
+  rocketBase: string = ROCKETS_BASE;
 
   constructor(
     private breakpointObserver: BreakpointObserver,
