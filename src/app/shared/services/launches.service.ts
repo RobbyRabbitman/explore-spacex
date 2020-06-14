@@ -1,21 +1,27 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Launch } from '../model/launch';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, throwError, empty } from 'rxjs';
-import { map, filter, catchError, tap } from 'rxjs/operators';
+import { map, filter, catchError } from 'rxjs/operators';
 import { isNonNull } from '../utils/isNonNull';
+import { SPACEX_BASE_URL } from './tokens/spacex-base-url.token';
 
 @Injectable()
 export class LaunchesService {
-  private readonly RESSOURCE: string = 'https://api.spacex.land/rest/launches';
+  private readonly RESSOURCE: string = '/launches';
   private readonly _launches$: BehaviorSubject<Launch[]> = new BehaviorSubject<
     Launch[]
   >(null);
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    @Inject(SPACEX_BASE_URL) private BASE_URL: string
+  ) {
+    console.log(this.BASE_URL);
+  }
 
   private fetch(): Observable<Launch[]> {
-    return this.http.get<Launch[]>(this.RESSOURCE).pipe(
+    return this.http.get<Launch[]>(this.BASE_URL.concat(this.RESSOURCE)).pipe(
       catchError((error) => {
         console.error(error);
         return throwError(error);
