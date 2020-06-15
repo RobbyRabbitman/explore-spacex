@@ -4,7 +4,7 @@
       *ngIf="launchesService.getLaunch(launch.id, -1) | async as previous"
     >
       <button
-        matTooltip="Previous Launch"
+        [matTooltip]="previous.mission_name"
         mat-icon-button
         [routerLink]="['../' + previous.id]"
       >
@@ -16,7 +16,7 @@
       *ngIf="launchesService.getLaunch(launch.id, 1) | async as next"
     >
       <button
-        matTooltip="Next Launch"
+        [matTooltip]="next.mission_name"
         mat-icon-button
         [routerLink]="['../' + next.id]"
       >
