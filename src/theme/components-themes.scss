@@ -2,4 +2,9 @@
 
 @mixin components-theme($theme) {
   @include app-launches-theme($theme);
+  //global
+  $primary: map-get($theme, primary);
+  mat-card-header {
+    color: mat-color($primary);
+  }
 }
