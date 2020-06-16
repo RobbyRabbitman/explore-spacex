@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RocketOverviewComponent } from './rocket-overview.component';
+import { RocketDetailComponent } from './rocket-detail.component';
 import { MaterialModule } from '../../material/material.module';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [RocketOverviewComponent],
-  exports: [RocketOverviewComponent],
+  exports: [RocketDetailComponent],
+  declarations: [RocketDetailComponent],
   imports: [CommonModule, MaterialModule, RouterModule],
 })
-export class RocketOverviewModule {}
+export class RocketDetailModule {}

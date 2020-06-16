@@ -1,14 +1,12 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SPACEX_BASE_URL } from './tokens/spacex-base-url.token';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, empty } from 'rxjs';
 import { Rocket } from '../model/rocket';
-import { filter } from 'rxjs/operators';
+import { filter, take, switchMap, map, catchError } from 'rxjs/operators';
 import { isNonNull } from '../utils/isNonNull';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class RocketService {
   private readonly RESSOURCE: string = '/rockets';
   private readonly _rockets$: BehaviorSubject<Rocket[]> = new BehaviorSubject<
@@ -23,6 +21,17 @@ export class RocketService {
   get rocket$() {
     if (this._rockets$.value == null) this.fetch();
     return this._rockets$.asObservable().pipe(filter(isNonNull));
+  }
+
+  public getRocket(id: string, offset: number = 0): Observable<Rocket> {
+    return this.rocket$.pipe(
+      take(1),
+      map(
+        (rockets) =>
+          rockets[rockets.findIndex((rocket) => rocket.id === id) - offset]
+      ),
+      catchError((err) => empty())
+    );
   }
 
   private fetch() {

@@ -1,11 +1,18 @@
-<section class="rockets">
-  <app-rocket-overview
-    [rocket]="rocket"
-    *ngFor="let rocket of rockets$ | async"
-  ></app-rocket-overview>
-</section>
-<mat-spinner
-  class="spinner"
-  color="primary"
-  *ngIf="!(rockets$ | async)"
-></mat-spinner>
+<ng-container *ngIf="rockets">
+  <section class="rockets">
+    <app-rocket-overview
+      *ngFor="let rocket of rockets"
+      #rockets
+      [rocket]="rocket"
+      [id]="rocket.id"
+    ></app-rocket-overview>
+  </section>
+  <nav class="toc">
+    <ul>
+      <li [id]="'toc_' + rocket.id" *ngFor="let rocket of rockets">
+        <a (click)="scrollTo(rocket.id)">{{ rocket.name }}</a>
+      </li>
+    </ul>
+  </nav>
+</ng-container>
+<mat-spinner class="spinner" color="primary" *ngIf="!rockets"></mat-spinner>

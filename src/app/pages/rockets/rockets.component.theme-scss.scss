@@ -1,0 +1,14 @@
+@import "~@angular/material/theming";
+
+@mixin app-rockets-theme($theme) {
+  $primary: map-get($theme, primary);
+
+  app-rockets {
+    > .toc > ul > li {
+      border-left: solid mat-color($primary) 0.25rem;
+    }
+    .toc-active {
+      color: mat-color($primary) !important;
+    }
+  }
+}

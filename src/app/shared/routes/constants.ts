@@ -7,3 +7,4 @@ export const LAUNCHES_PAGE = '';
 export const LAUNCH_DETAIL_PARAM = 'id';
 export const ROCKETS_BASE = 'rockets';
 export const ROCKETS_PAGE = '';
+export const ROCKETS_DETAIL_PARAM = 'id';

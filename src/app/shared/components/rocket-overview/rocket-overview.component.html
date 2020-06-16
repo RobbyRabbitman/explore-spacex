@@ -8,9 +8,6 @@
       <mat-list-item>
         First Flight: {{ rocket.first_flight | date }}</mat-list-item
       >
-      <mat-list-item> Height: {{ rocket.height.meters }}m </mat-list-item>
-      <mat-list-item> Diameter: {{ rocket.diameter.meters }}m </mat-list-item>
-      <mat-list-item> Mass: {{ rocket.mass.kg }}kg </mat-list-item>
       <mat-list-item>
         Engines: {{ rocket.engines.number }} x {{ rocket.engines.type }}
       </mat-list-item>
@@ -23,13 +20,8 @@
     </mat-list>
   </mat-card-content>
   <mat-card-actions>
-    <a
-      mat-button
-      [matTooltip]="rocket.wikipedia"
-      color="primary"
-      [href]="rocket.wikipedia"
-      target="blanc"
-      >Wikipedia</a
-    >
+    <button mat-button color="primary" [routerLink]="rocket.id">
+      Details
+    </button>
   </mat-card-actions>
 </mat-card>

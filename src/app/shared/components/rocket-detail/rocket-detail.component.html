@@ -1,0 +1,35 @@
+<section *ngIf="rocket$ | async as rocket">
+  <mat-toolbar color="primary">
+    <span class="icon-wrapper">
+      <button
+        *ngIf="rocketService.getRocket(rocket.id, -1) | async as previous"
+        [matTooltip]="previous.name"
+        [routerLink]="['../' + previous.id]"
+        mat-icon-button
+      >
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+    </span>
+    <span class="rocket-name">{{ rocket.name }}</span>
+    <span class="icon-wrapper">
+      <button
+        *ngIf="rocketService.getRocket(rocket.id, 1) | async as next"
+        [matTooltip]="next.name"
+        [routerLink]="['../' + next.id]"
+        mat-icon-button
+      >
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </span>
+  </mat-toolbar>
+  <!--
+       <a
+        mat-button
+        [matTooltip]="rocket.wikipedia"
+        color="primary"
+        [href]="rocket.wikipedia"
+        target="blanc"
+        >Wikipedia</a
+      >
+  -->
+</section>
