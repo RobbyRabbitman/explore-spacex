@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Rocket } from '../../model/rocket';
+import { RoutingService } from '../../routes/routing.service';
 
 @Component({
   selector: 'app-rocket-overview',
@@ -9,7 +10,7 @@ import { Rocket } from '../../model/rocket';
 export class RocketOverviewComponent implements OnInit {
   @Input() rocket: Rocket;
 
-  constructor() {}
+  constructor(public readonly ROUTES: RoutingService) {}
 
   ngOnInit(): void {}
 }

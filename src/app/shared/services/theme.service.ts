@@ -12,9 +12,10 @@ export class ThemeService {
   private readonly theme$: BehaviorSubject<Theme>;
   private readonly KEY: string = 'theme';
 
+  //TODO key is null... why..
   constructor() {
     this.theme$ = new BehaviorSubject<Theme>(
-      (localStorage.getItem(this.KEY) as Theme) || Theme.LIGHT
+      (localStorage.getItem('theme') as Theme) || Theme.LIGHT
     );
     this.theme$.pipe(tap(console.debug)).subscribe(this.apply);
   }
@@ -31,6 +32,6 @@ export class ThemeService {
     // TODO document.body.classList.remove(this.theme);
     document.body.classList.remove(...Object.values<Theme>(Theme));
     document.body.classList.add(theme);
-    localStorage.setItem(this.KEY, theme);
+    localStorage.setItem('theme', theme);
   }
 }

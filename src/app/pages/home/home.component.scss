@@ -1,3 +1,17 @@
-.test {
-  height: 200vh;
+:host {
+  display: grid;
+  gap: 4rem;
+  padding: 4rem 0;
+  grid-template-columns: min(25rem, 80vw);
+  justify-content: center;
+  > .explore-button {
+    width: max-content;
+    margin: auto;
+  }
+}
+
+h1,
+h3 {
+  text-align: center;
+  margin: 0;
 }

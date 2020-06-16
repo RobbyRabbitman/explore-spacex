@@ -17,6 +17,5 @@ import { RocketService } from 'src/app/shared/services/rocket.service';
     RocketDetailModule,
     MaterialModule,
   ],
-  providers: [RocketService],
 })
 export class RocketsModule {}

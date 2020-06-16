@@ -1,7 +1,26 @@
-<button [routerLink]="launchesPage">Explore</button>
-<button routerLink="./" fragment="1">1</button>
-<button routerLink="./" fragment="2">2</button>
-<button routerLink="./" fragment="3">3</button>
-<div id="1" class="test">1</div>
-<div id="2" class="test">2</div>
-<div id="3" class="test">3</div>
+<header>
+  <h1>{{ app.name }}</h1>
+</header>
+<mat-divider></mat-divider>
+<h3>Launches</h3>
+<app-launches-overview [launch]="latestLaunch$ | async">
+</app-launches-overview>
+<button
+  class="explore-button"
+  mat-raised-button
+  color="primary"
+  [routerLink]="launchesPage"
+>
+  Explore All Launches
+</button>
+<mat-divider></mat-divider>
+<h3>Rockets</h3>
+<app-rocket-overview [rocket]="rocket$ | async"></app-rocket-overview>
+<button
+  class="explore-button"
+  mat-raised-button
+  color="primary"
+  [routerLink]="launchesPage"
+>
+  Explore All Rockets
+</button>

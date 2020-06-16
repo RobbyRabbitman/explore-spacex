@@ -1,4 +1,4 @@
-<mat-card class="card">
+<mat-card class="card" *ngIf="launch">
   <mat-card-header class="card-header">
     <img
       mat-card-avatar
@@ -27,8 +27,13 @@
     ></app-count-down>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button color="primary" [routerLink]="launch.id">
+    <button
+      mat-button
+      color="primary"
+      [routerLink]="ROUTES.LAUNCH_DETAIL_PAGE(launch.id)"
+    >
       Details
     </button>
   </mat-card-actions>
 </mat-card>
+<mat-spinner color="primary" *ngIf="!launch"></mat-spinner>

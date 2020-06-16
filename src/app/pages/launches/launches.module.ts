@@ -18,6 +18,5 @@ import { LaunchDetailModule } from 'src/app/shared/components/launch-detail/laun
     LaunchesOverviewModule,
     LaunchDetailModule,
   ],
-  providers: [LaunchesService],
 })
 export class LaunchesModule {}

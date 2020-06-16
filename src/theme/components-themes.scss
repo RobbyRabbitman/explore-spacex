@@ -1,9 +1,12 @@
 @import "../app/pages/launches/launches.component.theme-scss.scss";
 @import "../app/pages/rockets/rockets.component.theme-scss.scss";
+@import "../app/pages/home/home.component.theme-scss.scss";
 
 @mixin components-theme($theme) {
   @include app-launches-theme($theme);
   @include app-rockets-theme($theme);
+  @include app-home-theme($theme);
+
   //global
   $primary: map-get($theme, primary);
   mat-card-header {

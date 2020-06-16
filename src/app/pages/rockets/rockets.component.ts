@@ -22,7 +22,6 @@ export class RocketsComponent implements OnInit {
 
     const observer = new IntersectionObserver((entries, observer) => {
       let active = entries.filter((entry) => entry.isIntersecting)[0];
-      console.log(entries);
 
       if (active) {
         toc.forEach((element) => element.classList.remove('toc-active'));
