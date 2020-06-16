@@ -4,6 +4,7 @@
   </mat-card-header>
   <mat-card-content>
     <p>{{ rocket.description }}</p>
+    <img mat-card-image loading="lazy" [src]="assets.ROCKETS.get(rocket.id)" />
     <mat-list>
       <mat-list-item>
         First Flight: {{ rocket.first_flight | date }}</mat-list-item
