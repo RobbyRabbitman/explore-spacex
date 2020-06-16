@@ -5,6 +5,8 @@ import {
   ROCKETS_PAGE,
   LAUNCHES_BASE,
   LAUNCHES_PAGE,
+  INFO_BASE,
+  INFO_PAGE,
 } from './constants';
 
 @Injectable()
@@ -14,6 +16,8 @@ export class RoutingService {
 
   public readonly LAUNCH_DETAIL_PAGE = (id: number): string =>
     `/${SHELL_BASE}/${LAUNCHES_BASE}/${LAUNCHES_PAGE}/${id}`;
+
+  public readonly INFO_PAGE = `/${SHELL_BASE}/${INFO_BASE}/${INFO_PAGE}`;
 
   constructor() {}
 }

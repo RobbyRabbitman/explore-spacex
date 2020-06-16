@@ -4,6 +4,7 @@ import {
   LAUNCHES_BASE,
   SHELL_PAGE,
   ROCKETS_BASE,
+  INFO_BASE,
 } from '../../routes/constants';
 import { ShellComponent } from './shell.component';
 
@@ -24,6 +25,13 @@ const routes: Routes = [
         loadChildren: () =>
           import('../../../pages/rockets/rockets.module').then(
             (module) => module.RocketsModule
+          ),
+      },
+      {
+        path: INFO_BASE,
+        loadChildren: () =>
+          import('../../../pages/info/info.module').then(
+            (module) => module.InfoModule
           ),
       },
     ],

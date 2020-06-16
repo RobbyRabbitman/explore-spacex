@@ -8,3 +8,5 @@ export const LAUNCH_DETAIL_PARAM = 'id';
 export const ROCKETS_BASE = 'rockets';
 export const ROCKETS_PAGE = '';
 export const ROCKETS_DETAIL_PARAM = 'id';
+export const INFO_BASE = 'info';
+export const INFO_PAGE = '';
