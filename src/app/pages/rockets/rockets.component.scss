@@ -1,12 +1,15 @@
 :host {
   display: grid;
-  grid-template-columns: 1fr max-content;
+  grid-template-areas: ". rockets toc .";
   height: 100%;
+  justify-content: center;
   > .spinner {
     margin: auto;
   }
   > .toc {
+    grid-area: toc;
     > ul {
+      padding: 0;
       position: sticky;
       top: 2rem;
       > li {
@@ -23,10 +26,12 @@
     }
   }
   > .rockets {
+    grid-area: rockets;
+    //
     display: grid;
-    gap: 1rem;
-    padding: 1rem 0;
-    grid-template-columns: min(25rem, 80vw);
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 25rem;
     justify-content: center;
   }
 }
