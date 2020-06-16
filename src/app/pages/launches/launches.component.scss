@@ -7,7 +7,8 @@
     grid-area: launches;
     //
     display: grid;
-    gap: 1rem;
+    gap: 2rem;
+    padding: 2rem;
     justify-content: center;
     > app-launches-overview {
       max-width: 25rem;
@@ -21,7 +22,7 @@
     grid-area: toc;
     width: max-content;
     > ul {
-      padding: 0 4rem;
+      padding: 0;
       position: sticky;
       top: 2rem;
       > li {
