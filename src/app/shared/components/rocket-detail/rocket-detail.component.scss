@@ -1,7 +1,33 @@
-.rocket-name {
-  flex: 1;
-  text-align: center;
-}
-.icon-wrapper {
-  width: 40px;
+:host {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  > header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    .rocket-name {
+      flex: 1;
+      text-align: center;
+    }
+    .icon-wrapper {
+      width: 40px;
+    }
+  }
+
+  .content {
+    width: 100%;
+    display: grid;
+    grid-template-columns: min(25rem, 80vw);
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem 0;
+  }
+
+  > mat-spinner {
+    margin: auto 0;
+  }
 }

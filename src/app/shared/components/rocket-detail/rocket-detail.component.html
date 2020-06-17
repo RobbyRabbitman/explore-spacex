@@ -1,35 +1,142 @@
-<section *ngIf="rocket$ | async as rocket">
-  <mat-toolbar color="primary">
-    <span class="icon-wrapper">
-      <button
-        *ngIf="rocketService.getRocket(rocket.id, -1) | async as previous"
-        [matTooltip]="previous.name"
-        [routerLink]="['../' + previous.id]"
-        mat-icon-button
-      >
-        <mat-icon>chevron_left</mat-icon>
-      </button>
-    </span>
-    <span class="rocket-name">{{ rocket.name }}</span>
-    <span class="icon-wrapper">
-      <button
-        *ngIf="rocketService.getRocket(rocket.id, 1) | async as next"
-        [matTooltip]="next.name"
-        [routerLink]="['../' + next.id]"
-        mat-icon-button
-      >
-        <mat-icon>chevron_right</mat-icon>
-      </button>
-    </span>
-  </mat-toolbar>
-  <!--
-       <a
-        mat-button
-        [matTooltip]="rocket.wikipedia"
-        color="primary"
-        [href]="rocket.wikipedia"
-        target="blanc"
-        >Wikipedia</a
-      >
-  -->
-</section>
+<ng-container *ngIf="rocket$ | async as rocket">
+  <header>
+    <mat-toolbar color="primary">
+      <span class="icon-wrapper">
+        <button
+          *ngIf="rocketService.getRocket(rocket.id, -1) | async as previous"
+          [matTooltip]="previous.name"
+          [routerLink]="['../' + previous.id]"
+          mat-icon-button
+        >
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+      </span>
+      <span class="rocket-name">{{ rocket.name }}</span>
+      <span class="icon-wrapper">
+        <button
+          *ngIf="rocketService.getRocket(rocket.id, 1) | async as next"
+          [matTooltip]="next.name"
+          [routerLink]="['../' + next.id]"
+          mat-icon-button
+        >
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+      </span>
+    </mat-toolbar>
+  </header>
+  <section class="content">
+    <mat-card class="overview">
+      <mat-card-header>
+        <mat-card-title>{{ rocket.name }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ rocket.description }}</p>
+        <img
+          mat-card-image
+          loading="lazy"
+          [src]="assets.ROCKETS.get(rocket.id)"
+        />
+        <mat-list>
+          <mat-list-item>
+            First Flight: {{ rocket.first_flight | date }}</mat-list-item
+          >
+          <mat-list-item>
+            Engines: {{ rocket.engines.number }} x {{ rocket.engines.type }}
+          </mat-list-item>
+          <mat-list-item>
+            Succesrate: {{ rocket.success_rate_pct }}%
+          </mat-list-item>
+          <mat-list-item>
+            Cost Per Launch: {{ rocket.cost_per_launch | currency }}
+          </mat-list-item>
+          <mat-list-item> Boosters: {{ rocket.boosters }} </mat-list-item>
+          <mat-list-item>
+            Height: {{ rocket.height.meters }}m, {{ rocket.height.feet }}ft
+          </mat-list-item>
+          <mat-list-item>
+            Diameter: {{ rocket.diameter.meters }}m,
+            {{ rocket.diameter.feet }}ft
+          </mat-list-item>
+          <mat-list-item>
+            Mass: {{ rocket.mass.kg }}kg, {{ rocket.mass.lb }}lb
+          </mat-list-item>
+          <mat-list-item> Stages: {{ rocket.stages }} </mat-list-item>
+          <mat-list-item> Active: {{ rocket.active }} </mat-list-item>
+          <mat-list-item> Company: {{ rocket.company }} </mat-list-item>
+          <mat-list-item> Country: {{ rocket.country }} </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+      <mat-card-actions>
+        <a
+          mat-button
+          [matTooltip]="rocket.wikipedia"
+          color="primary"
+          [href]="rocket.wikipedia"
+          target="blanc"
+          >Wikipedia</a
+        >
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="engines">
+      <mat-card-header>
+        <mat-card-title>
+          Engines
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item *ngFor="let item of rocket.engines | keyvalue">
+            {{ item.key }}: {{ item.value | json }}
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="first-stage">
+      <mat-card-header>
+        <mat-card-title>
+          First Stage
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item *ngFor="let item of rocket.first_stage | keyvalue">
+            {{ item.key }}: {{ item.value | json }}
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="second-stage">
+      <mat-card-header>
+        <mat-card-title>
+          Second Stage
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item *ngFor="let item of rocket.second_stage | keyvalue">
+            {{ item.key }}: {{ item.value | json }}
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="payload-weights">
+      <mat-card-header>
+        <mat-card-title>
+          Payload Weights
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item *ngFor="let item of rocket.payload_weights | keyvalue">
+            {{ item.key }}: {{ item.value | json }}
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </section>
+</ng-container>
+<mat-spinner *ngIf="!(rocket$ | async)"></mat-spinner>

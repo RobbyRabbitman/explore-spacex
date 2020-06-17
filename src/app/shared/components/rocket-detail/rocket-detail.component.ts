@@ -5,6 +5,8 @@ import { pluck, map, switchMap, share } from 'rxjs/operators';
 import { ROCKETS_DETAIL_PARAM } from '../../routes/constants';
 import { Rocket } from '../../model/rocket';
 import { Observable } from 'rxjs';
+import { AssetsService } from '../../services/assets.service';
+import { RoutingService } from '../../routes/routing.service';
 
 @Component({
   selector: 'app-rocket-detail',
@@ -16,14 +18,15 @@ export class RocketDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    public rocketService: RocketService
+    public rocketService: RocketService,
+    public assets: AssetsService,
+    public ROUTES: RoutingService
   ) {}
 
   ngOnInit(): void {
     this.rocket$ = this.route.params.pipe(
       pluck<Rocket, string>(ROCKETS_DETAIL_PARAM),
-      switchMap((id) => this.rocketService.getRocket(id)),
-      share()
+      switchMap((id) => this.rocketService.getRocket(id))
     );
   }
 }
