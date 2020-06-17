@@ -11,7 +11,8 @@ import { ThemeService, Theme } from '../../services/theme.service';
 export class ThemeSwitcherComponent {
   constructor(public service: ThemeService) {}
 
-  toggle({ checked }: MatSlideToggleChange) {
-    this.service.theme = checked ? Theme.DARK : Theme.LIGHT;
+  toggle() {
+    this.service.theme =
+      this.service.theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT;
   }
 }

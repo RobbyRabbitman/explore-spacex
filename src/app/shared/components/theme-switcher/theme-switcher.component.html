@@ -1,4 +1,9 @@
-<mat-slide-toggle
-  (change)="toggle($event)"
-  [checked]="service.theme == 'dark-theme'"
-></mat-slide-toggle>
+<button
+  [matTooltip]="service.theme === 'dark-theme' ? 'Light Mode' : 'Dark Mode'"
+  mat-icon-button
+  (click)="toggle()"
+>
+  <mat-icon>{{
+    service.theme === "dark-theme" ? "brightness_7" : "brightness_1"
+  }}</mat-icon>
+</button>
