@@ -29,13 +29,7 @@
         <app-count-down [from]="launch.launch_date_utc"></app-count-down>
       </mat-card-content>
     </mat-card>
-    <app-carousel
-      [config]="{
-        images: launch.links.flickr_images,
-        selected: 0,
-        height: '500px'
-      }"
-    ></app-carousel>
+
     <mat-card>
       <mat-card-header>
         <img
@@ -153,7 +147,15 @@
         </mat-menu>
       </mat-card-actions>
     </mat-card>
-    <mat-card id="youtubeCard">
+    <app-carousel
+      *ngIf="launch.links.flickr_images?.length > 0"
+      [config]="{
+        images: launch.links.flickr_images,
+        selected: 0,
+        height: '500px'
+      }"
+    ></app-carousel>
+    <mat-card id="youtubeCard" *ngIf="launch.links.video_link">
       <mat-card-content class="content">
         <youtube-player
           class="youtube"

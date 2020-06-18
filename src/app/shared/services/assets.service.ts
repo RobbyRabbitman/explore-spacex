@@ -13,6 +13,7 @@ export class AssetsService {
     ['falconheavy', this.FALCON_HEAVY],
     ['starship', this.STARSHIP],
   ]);
+  public readonly ROCKET_ICON: string = 'assets/images/rockets/rocket.svg';
 
   constructor() {}
 }
