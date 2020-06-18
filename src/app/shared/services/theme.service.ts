@@ -15,7 +15,7 @@ export class ThemeService {
   //TODO key is null... why..
   constructor() {
     this.theme$ = new BehaviorSubject<Theme>(
-      (localStorage.getItem('theme') as Theme) || Theme.LIGHT
+      (localStorage.getItem('theme') as Theme) || Theme.DARK
     );
     this.theme$.pipe(tap(console.debug)).subscribe(this.apply);
   }
