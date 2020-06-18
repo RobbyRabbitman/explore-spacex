@@ -44,19 +44,20 @@
         <mat-card-title>
           {{ launch.mission_name }}
         </mat-card-title>
-        <mat-card-subtitle> </mat-card-subtitle>
+        <mat-card-subtitle
+          >{{ launch.launch_date_utc | date }}
+        </mat-card-subtitle>
       </mat-card-header>
-      <mat-card-content>
-        <mat-list>
-          <mat-list-item>
-            Date: {{ launch.launch_date_utc | date }}
-          </mat-list-item>
-          <mat-list-item>
-            Site: {{ launch.launch_site.site_name_long }}
-          </mat-list-item>
-          <mat-list-item> Success: {{ launch.launch_success }} </mat-list-item>
-        </mat-list>
-        <p class="details">{{ launch.details }}</p>
+      <mat-card-content class="launch-overview-content">
+        <app-carousel
+          *ngIf="launch.links.flickr_images?.length > 0"
+          [config]="{
+            images: launch.links.flickr_images,
+            selected: 0,
+            height: '25rem'
+          }"
+        ></app-carousel>
+        <p>{{ launch.details }}</p>
       </mat-card-content>
       <mat-card-actions>
         <a
@@ -147,14 +148,7 @@
         </mat-menu>
       </mat-card-actions>
     </mat-card>
-    <app-carousel
-      *ngIf="launch.links.flickr_images?.length > 0"
-      [config]="{
-        images: launch.links.flickr_images,
-        selected: 0,
-        height: '500px'
-      }"
-    ></app-carousel>
+
     <mat-card id="youtubeCard" *ngIf="launch.links.video_link">
       <mat-card-content class="content">
         <youtube-player
