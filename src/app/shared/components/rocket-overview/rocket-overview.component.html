@@ -7,23 +7,29 @@
     <img mat-card-image loading="lazy" [src]="assets.ROCKETS.get(rocket.id)" />
     <mat-list>
       <mat-list-item>
-        First Flight: {{ rocket.first_flight | date }}</mat-list-item
+        <span class="stat" matLine>First Flight</span>
+        <span matLine>{{ rocket.first_flight | date }}</span></mat-list-item
       >
       <mat-list-item>
-        Engines: {{ rocket.engines.number }} x {{ rocket.engines.type }}
+        <span class="stat" matLine>Engines</span>
+        <span matLine
+          >{{ rocket.engines.number }} x {{ rocket.engines.type }}</span
+        >
       </mat-list-item>
       <mat-list-item>
-        Succesrate: {{ rocket.success_rate_pct }}%
+        <span class="stat" matLine>Succesrate</span>
+        <span matLine> {{ rocket.success_rate_pct }}%</span>
       </mat-list-item>
       <mat-list-item>
-        Cost Per Launch: {{ rocket.cost_per_launch | currency }}
+        <span class="stat" matLine>Cost Per Launch</span>
+        <span matLine>{{ rocket.cost_per_launch | currency }}</span>
       </mat-list-item>
     </mat-list>
   </mat-card-content>
   <mat-card-actions>
     <button
       mat-button
-      color="primary"
+      color="accent"
       [routerLink]="ROUTES.ROCKET_DETAIL_PAGE(rocket.id)"
     >
       Details

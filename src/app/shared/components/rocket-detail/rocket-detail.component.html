@@ -37,33 +37,51 @@
           [src]="assets.ROCKETS.get(rocket.id)"
         />
         <mat-list>
+          <div mat-subheader>First Flight</div>
+          <mat-list-item> {{ rocket.first_flight | date }} </mat-list-item
+          ><mat-divider></mat-divider>
+          <div mat-subheader>Engines</div>
           <mat-list-item>
-            First Flight: {{ rocket.first_flight | date }}</mat-list-item
-          >
+            {{ rocket.engines.number }} x
+            {{ rocket.engines.type }} </mat-list-item
+          ><mat-divider></mat-divider>
+          <div mat-subheader>Succesrate</div>
+          <mat-list-item> {{ rocket.success_rate_pct }}% </mat-list-item
+          ><mat-divider></mat-divider>
+          <div mat-subheader>Cost Per Launch</div>
           <mat-list-item>
-            Engines: {{ rocket.engines.number }} x {{ rocket.engines.type }}
+            {{ rocket.cost_per_launch | currency }} </mat-list-item
+          ><mat-divider></mat-divider>
+          <div mat-subheader>Boosters</div>
+          <mat-list-item> {{ rocket.boosters }} </mat-list-item
+          ><mat-divider></mat-divider>
+          <div mat-subheader>Height</div>
+          <mat-list-item>
+            {{ rocket.height.meters }}m,
+            {{ rocket.height.feet }}ft </mat-list-item
+          ><mat-divider></mat-divider>
+          <div mat-subheader>Diameter</div>
+          <mat-list-item>
+            {{ rocket.diameter.meters }}m,
+            {{ rocket.diameter.feet }}ft </mat-list-item
+          ><mat-divider></mat-divider>
+          <div mat-subheader>Mass</div>
+          <mat-list-item>
+            {{ rocket.mass.kg }}kg, {{ rocket.mass.lb }}lb </mat-list-item
+          ><mat-divider></mat-divider>
+          <div mat-subheader>Stages</div>
+          <mat-list-item> {{ rocket.stages }} </mat-list-item
+          ><mat-divider></mat-divider>
+          <div mat-subheader>Active</div>
+          <mat-list-item> {{ rocket.active }} </mat-list-item
+          ><mat-divider></mat-divider>
+          <div mat-subheader>Company</div>
+          <mat-list-item> {{ rocket.company }} </mat-list-item
+          ><mat-divider></mat-divider>
+          <div mat-subheader>Country</div>
+          <mat-list-item>
+            {{ rocket.country }}
           </mat-list-item>
-          <mat-list-item>
-            Succesrate: {{ rocket.success_rate_pct }}%
-          </mat-list-item>
-          <mat-list-item>
-            Cost Per Launch: {{ rocket.cost_per_launch | currency }}
-          </mat-list-item>
-          <mat-list-item> Boosters: {{ rocket.boosters }} </mat-list-item>
-          <mat-list-item>
-            Height: {{ rocket.height.meters }}m, {{ rocket.height.feet }}ft
-          </mat-list-item>
-          <mat-list-item>
-            Diameter: {{ rocket.diameter.meters }}m,
-            {{ rocket.diameter.feet }}ft
-          </mat-list-item>
-          <mat-list-item>
-            Mass: {{ rocket.mass.kg }}kg, {{ rocket.mass.lb }}lb
-          </mat-list-item>
-          <mat-list-item> Stages: {{ rocket.stages }} </mat-list-item>
-          <mat-list-item> Active: {{ rocket.active }} </mat-list-item>
-          <mat-list-item> Company: {{ rocket.company }} </mat-list-item>
-          <mat-list-item> Country: {{ rocket.country }} </mat-list-item>
         </mat-list>
       </mat-card-content>
       <mat-card-actions>
@@ -86,9 +104,13 @@
       </mat-card-header>
       <mat-card-content>
         <mat-list>
-          <mat-list-item *ngFor="let item of rocket.engines | keyvalue">
-            {{ item.key }}: {{ item.value | json }}
-          </mat-list-item>
+          <ng-container *ngFor="let item of rocket.engines | keyvalue">
+            <mat-divider></mat-divider>
+            <div mat-subheader>{{ item.key }}</div>
+            <mat-list-item>
+              {{ item.value | json }}
+            </mat-list-item>
+          </ng-container>
         </mat-list>
       </mat-card-content>
     </mat-card>
@@ -101,9 +123,13 @@
       </mat-card-header>
       <mat-card-content>
         <mat-list>
-          <mat-list-item *ngFor="let item of rocket.first_stage | keyvalue">
-            {{ item.key }}: {{ item.value | json }}
-          </mat-list-item>
+          <ng-container *ngFor="let item of rocket.first_stage | keyvalue">
+            <mat-divider></mat-divider>
+            <div mat-subheader>{{ item.key }}</div>
+            <mat-list-item>
+              {{ item.value | json }}
+            </mat-list-item>
+          </ng-container>
         </mat-list>
       </mat-card-content>
     </mat-card>
@@ -116,9 +142,13 @@
       </mat-card-header>
       <mat-card-content>
         <mat-list>
-          <mat-list-item *ngFor="let item of rocket.second_stage | keyvalue">
-            {{ item.key }}: {{ item.value | json }}
-          </mat-list-item>
+          <ng-container *ngFor="let item of rocket.second_stage | keyvalue">
+            <mat-divider></mat-divider>
+            <div mat-subheader>{{ item.key }}</div>
+            <mat-list-item>
+              {{ item.value | json }}
+            </mat-list-item>
+          </ng-container>
         </mat-list>
       </mat-card-content>
     </mat-card>
@@ -131,9 +161,13 @@
       </mat-card-header>
       <mat-card-content>
         <mat-list>
-          <mat-list-item *ngFor="let item of rocket.payload_weights | keyvalue">
-            {{ item.key }}: {{ item.value | json }}
-          </mat-list-item>
+          <ng-container *ngFor="let item of rocket.payload_weights | keyvalue">
+            <mat-divider></mat-divider>
+            <div mat-subheader>{{ item.key }}</div>
+            <mat-list-item>
+              {{ item.value | json }}
+            </mat-list-item>
+          </ng-container>
         </mat-list>
       </mat-card-content>
     </mat-card>

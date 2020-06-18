@@ -14,4 +14,8 @@
   mat-card-header {
     color: mat-color($primary);
   }
+  mat-list-item {
+    height: unset !important;
+    padding: 1rem 0 !important;
+  }
 }
