@@ -109,6 +109,12 @@
               "devServerTarget": "spacex:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "https://robbyrabbitman.github.io/explore-spacex/"
+          }
         }
       }
     }
