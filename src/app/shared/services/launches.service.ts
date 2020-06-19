@@ -40,7 +40,7 @@ export class LaunchesService {
   }
 
   public getLaunch(id: number, offset: number = 0): Observable<Launch> {
-    if (this._launches$.value === null && offset === 0)
+    if (this._launches$.value == null && offset === 0)
       return this.fetchLaunch(id);
     else
       return this.launches$.pipe(
