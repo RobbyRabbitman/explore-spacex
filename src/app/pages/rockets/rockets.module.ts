@@ -7,6 +7,7 @@ import { RocketOverviewModule } from 'src/app/shared/components/rocket-overview/
 import { MaterialModule } from 'src/app/shared/material/material.module';
 import { RocketDetailModule } from 'src/app/shared/components/rocket-detail/rocket-detail.module';
 import { RocketService } from 'src/app/shared/services/rocket.service';
+import { RocketGuard } from 'src/app/shared/guards/rocket.guard';
 
 @NgModule({
   declarations: [RocketsComponent],
@@ -17,5 +18,6 @@ import { RocketService } from 'src/app/shared/services/rocket.service';
     RocketDetailModule,
     MaterialModule,
   ],
+  providers: [RocketGuard],
 })
 export class RocketsModule {}
