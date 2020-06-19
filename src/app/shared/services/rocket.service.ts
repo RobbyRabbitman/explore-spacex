@@ -8,7 +8,8 @@ import { isNonNull } from '../utils/isNonNull';
 
 @Injectable()
 export class RocketService {
-  private readonly RESSOURCE: string = '/rockets';
+  private readonly ROCKETS: string = '/rockets';
+  private readonly ROCKET: string = '/rocket';
   private readonly _rockets$: BehaviorSubject<Rocket[]> = new BehaviorSubject<
     Rocket[]
   >(null);
@@ -19,24 +20,29 @@ export class RocketService {
   ) {}
 
   get rocket$() {
-    if (this._rockets$.value == null) this.fetch();
+    if (this._rockets$.value == null) this.fetchRockets();
     return this._rockets$.asObservable().pipe(filter(isNonNull));
   }
 
   public getRocket(id: string, offset: number = 0): Observable<Rocket> {
-    return this.rocket$.pipe(
-      take(1),
-      map(
-        (rockets) =>
-          rockets[rockets.findIndex((rocket) => rocket.id === id) - offset]
-      ),
-      catchError((err) => empty())
-    );
+    if (this._rockets$.value == null && offset === 0)
+      return this.fetchRocket(id);
+    else
+      return this.rocket$.pipe(
+        take(1),
+        map(
+          (rockets) =>
+            rockets[rockets.findIndex((rocket) => rocket.id === id) - offset]
+        )
+      );
   }
 
-  private fetch() {
+  private fetchRocket(id: string): Observable<Rocket> {
+    return this.http.get<Rocket>(`${this.BASE_URL}${this.ROCKET}/${id}`);
+  }
+  private fetchRockets() {
     this.http
-      .get<Rocket[]>(this.BASE_URL.concat(this.RESSOURCE))
+      .get<Rocket[]>(this.BASE_URL.concat(this.ROCKETS))
       .subscribe((rockets) => this._rockets$.next(rockets));
   }
 }
