@@ -13,7 +13,7 @@ import { showCountDown } from '../../utils/launches';
   styleUrls: ['./launch-detail.component.scss'],
 })
 export class LaunchDetailComponent implements OnInit {
-  launch$: Observable<Launch>;
+  launch: Launch;
   launchesPage: string;
 
   constructor(
@@ -23,11 +23,12 @@ export class LaunchDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.launchesPage = LAUNCHES_BASE;
-    this.launch$ = this.route.params.pipe(
-      pluck<ParamMap, number>(LAUNCH_DETAIL_PARAM), // pluck id
-      switchMap((id) => this.launchesService.getLaunch(id)), // switch to launch observable
-      share() // share it aka make it hot -> prevents x requests for x observers
-    );
+    this.route.params
+      .pipe(
+        pluck<ParamMap, number>(LAUNCH_DETAIL_PARAM), // pluck id
+        switchMap((id) => this.launchesService.getLaunch(id)) // switch to launch
+      )
+      .subscribe((launch) => (this.launch = launch));
   }
   //"https://youtu.be/y4xBFHjkUvw"
   getIdOfYoutubeVideo(launch: Launch) {

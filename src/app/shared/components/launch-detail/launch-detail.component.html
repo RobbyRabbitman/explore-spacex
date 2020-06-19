@@ -1,4 +1,4 @@
-<section class="launch-detail" *ngIf="launch$ | async as launch">
+<section class="launch-detail" *ngIf="launch">
   <mat-toolbar class="header" color="primary">
     <span class="icon-wrapper">
       <button
@@ -159,4 +159,4 @@
     </mat-card>
   </section>
 </section>
-<mat-spinner class="spinner" *ngIf="!(launch$ | async)"></mat-spinner>
+<mat-spinner class="spinner" *ngIf="!launch"></mat-spinner>
