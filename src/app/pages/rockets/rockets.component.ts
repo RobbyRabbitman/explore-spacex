@@ -36,7 +36,7 @@ export class RocketsComponent implements OnInit {
   constructor(private rocketService: RocketService) {}
 
   ngOnInit(): void {
-    this.rocketService.rocket$
+    this.rocketService.rockets$
       .pipe(take(1))
       .subscribe((rockets) => (this.rockets = rockets));
   }

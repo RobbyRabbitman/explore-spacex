@@ -18,13 +18,13 @@ export class LaunchesService {
   constructor(
     private http: HttpClient,
     @Inject(SPACEX_BASE_URL) private BASE_URL: string
-  ) {}
+  ) {
+    this.fetchLaunches().subscribe((launches) =>
+      this._launches$.next(launches)
+    );
+  }
 
   get launches$(): Observable<Launch[]> {
-    if (this._launches$.value == null)
-      this.fetchLaunches().subscribe((launches) =>
-        this._launches$.next(launches)
-      );
     return this._launches$.asObservable().pipe(
       filter(isNonNull),
       map((launches) =>
@@ -71,11 +71,6 @@ export class LaunchesService {
   }
 
   private fetchLaunches(): Observable<Launch[]> {
-    return this.http.get<Launch[]>(`${this.BASE_URL}${this.LAUNCHES}`).pipe(
-      catchError((error) => {
-        console.error(error);
-        return throwError(error);
-      })
-    );
+    return this.http.get<Launch[]>(`${this.BASE_URL}${this.LAUNCHES}`);
   }
 }

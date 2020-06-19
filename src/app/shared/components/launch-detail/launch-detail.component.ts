@@ -24,8 +24,9 @@ export class LaunchDetailComponent implements OnInit {
   ngOnInit(): void {
     this.launchesPage = LAUNCHES_BASE;
     this.launch$ = this.route.params.pipe(
-      pluck<ParamMap, number>(LAUNCH_DETAIL_PARAM),
-      switchMap((id) => this.launchesService.getLaunch(id).pipe(share()))
+      pluck<ParamMap, number>(LAUNCH_DETAIL_PARAM), // pluck id
+      switchMap((id) => this.launchesService.getLaunch(id)), // switch to launch observable
+      share() // share it aka make it hot -> prevents x requests for x observers
     );
   }
   //"https://youtu.be/y4xBFHjkUvw"
