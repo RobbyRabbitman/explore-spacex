@@ -11,13 +11,14 @@ import {
 
 @Injectable()
 export class RoutingService {
-  public readonly ROCKETS_PAGE = `/${SHELL_BASE}/${ROCKETS_BASE}`;
+  public readonly ROCKETS_PAGE = `/${ROCKETS_BASE}`;
+  public readonly LAUNCHES_PAGE = `/${LAUNCHES_BASE}`;
 
   public readonly ROCKET_DETAIL_PAGE = (id: string): string =>
     `${this.ROCKETS_PAGE}/${ROCKETS_PAGE}/${id}`;
 
   public readonly LAUNCH_DETAIL_PAGE = (id: number): string =>
-    `/${SHELL_BASE}/${LAUNCHES_BASE}/${LAUNCHES_PAGE}/${id}`;
+    `/${this.LAUNCHES_PAGE}/${id}`;
 
   public readonly INFO_PAGE = `/${SHELL_BASE}/${INFO_BASE}/${INFO_PAGE}`;
 
